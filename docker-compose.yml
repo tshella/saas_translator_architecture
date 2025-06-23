@@ -10,9 +10,13 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: mysql://symfony:symfony@db:3306/translator?serverVersion=8.0
-      MESSENGER_TRANSPORT_DSN: redis://redis:6379/messages
-      LIBRETRANSLATE_URL: http://libretranslate:5000
+      APP_ENV: dev
+      APP_SECRET: ${APP_SECRET}
+      APP_DEBUG: ${APP_DEBUG}
+      DATABASE_URL: ${DATABASE_URL}
+      MESSENGER_TRANSPORT_DSN: ${MESSENGER_TRANSPORT_DSN}
+      LIBRETRANSLATE_URL: ${LIBRETRANSLATE_URL}
+      JWT_PASSPHRASE: ${JWT_PASSPHRASE}
     depends_on:
       - db
       - redis

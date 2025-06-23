@@ -1,5 +1,5 @@
-# Stage 1: Symfony PHP 8.2 CLI setup
-FROM php:8.2-cli AS symfony
+# Use official PHP CLI image as base
+FROM php:8.2-cli
 
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
@@ -18,33 +18,31 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libxslt1-dev \
     libssl-dev \
-    netcat \
-    && docker-php-ext-install \
-        pdo_mysql \
-        zip \
-        intl \
-        opcache \
-        sodium \
-        bcmath \
-        sockets
+    netcat-openbsd \
+    && docker-php-ext-install pdo_mysql zip intl opcache sodium bcmath sockets \
+    && docker-php-ext-enable sodium \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install Composer globally from composer image
+# Install Composer globally
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /var/www
 
-# Copy Symfony project files
+# Copy all project files including bin/console
 COPY . .
 
-# Set correct permissions
+# Fix permissions for var/cache and var/log (Symfony expects writable)
 RUN mkdir -p var/cache var/log && chown -R www-data:www-data var
 
-# Run Composer install (again for final image)
-RUN composer install --no-interaction --optimize-autoloader
-
-# Make Symfony CLI script executable
+# Make bin/console executable
 RUN chmod +x bin/console
 
-# Entry point
-ENTRYPOINT ["./docker-entrypoint.sh"]
+# Install PHP dependencies with optimized autoloader, no interaction
+RUN composer install --no-interaction --optimize-autoloader
+
+# Expose port 8000 for Symfony built-in server
+EXPOSE 8000
+
+# Default command to run Symfony built-in PHP server
+CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]

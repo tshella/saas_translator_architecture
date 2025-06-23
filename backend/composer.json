@@ -4,18 +4,23 @@
     "license": "MIT",
     "require": {
       "php": "^8.2",
-      "symfony/console": "^6.3",
-      "symfony/dotenv": "^6.3",
-      "symfony/framework-bundle": "^6.3",
-      "symfony/messenger": "^6.3",
+      "symfony/console": "^6.4",
+      "symfony/dotenv": "^6.4",
+      "symfony/framework-bundle": "^6.4",
+      "symfony/messenger": "^6.4",
       "symfony/orm-pack": "^2.4",
-      "symfony/runtime": "^6.3",
-      "symfony/yaml": "^6.3",
-      "symfony/http-client": "^6.3",
-      "doctrine/doctrine-bundle": "^2.10",
-      "doctrine/annotations": "^1.0",
-      "doctrine/doctrine-migrations-bundle": "^3.0",
-      "lexik/jwt-authentication-bundle": "^2.20"
+      "symfony/runtime": "^6.4",
+      "symfony/yaml": "^6.4",
+      "symfony/http-client": "^6.4",
+      "symfony/http-client-bundle": "^6.4",
+      "symfony/security-bundle": "^6.4",
+      "doctrine/doctrine-bundle": "^2.15",
+      "doctrine/annotations": "^1.14",
+      "doctrine/doctrine-migrations-bundle": "^3.4",
+      "lexik/jwt-authentication-bundle": "^2.21"
+    },
+    "require-dev": {
+      "symfony/debug-bundle": "^6.4"
     },
     "autoload": {
       "psr-4": {
@@ -25,13 +30,17 @@
     "scripts": {
       "post-install-cmd": [
         "@php bin/console cache:clear"
+      ],
+      "post-update-cmd": [
+        "@php bin/console cache:clear"
       ]
     },
     "config": {
       "preferred-install": "dist",
       "sort-packages": true,
       "allow-plugins": {
-        "symfony/runtime": true
+        "symfony/runtime": true,
+        "composer/package-versions-deprecated": true
       }
     },
     "minimum-stability": "stable",
