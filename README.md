@@ -22,19 +22,20 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 
 
 
-✅ Features Implemented
-Feature	Status	Description
-Symfony API-driven backend	✅ Done	Modular, extensible architecture
-Dockerized environment	✅ Done	PHP, MySQL, Redis containers
-Async queue processing	✅ Done	Symfony Messenger + Redis backend
-Strategy-based translation engine	✅ Done	Google, DeepL, LibreTranslate, OpenAI support
-Glossary-based term replacement	✅ Done	Customizable dictionary integration
-Tone decorators	✅ Done	Formal, casual, professional tone modes
-JWT authentication	✅ Done	Lexik JWT bundle with role-based security
-Database automation	✅ Done	Auto-creation & migrations with Doctrine
-Shell scripts	✅ Done	Setup, migration, seeding automation
-Makefile & docker-entrypoint	✅ Done	Clean orchestration & lifecycle management
-Compatibility	✅ Done	Symfony CLI, Docker, native PHP runtime
+| Feature                      | Status   | Description                               |
+|-----------------------------|----------|-------------------------------------------|
+| Symfony API-driven backend   | ✅ Done  | Modular, extensible architecture          |
+| Dockerized environment       | ✅ Done  | PHP, MySQL, Redis containers               |
+| Async queue processing       | ✅ Done  | Symfony Messenger + Redis backend          |
+| Strategy-based translation engine | ✅ Done  | Google, DeepL, LibreTranslate, OpenAI support |
+| Glossary-based term replacement | ✅ Done  | Customizable dictionary integration        |
+| Tone decorators             | ✅ Done  | Formal, casual, professional tone modes   |
+| JWT authentication          | ✅ Done  | Lexik JWT bundle with role-based security |
+| Database automation         | ✅ Done  | Auto-creation & migrations with Doctrine  |
+| Shell scripts               | ✅ Done  | Setup, migration, seeding automation       |
+| Makefile & docker-entrypoint | ✅ Done  | Clean orchestration & lifecycle management |
+| Compatibility               | ✅ Done  | Symfony CLI, Docker, native PHP runtime    |
+
 
 🚀 Quick Start
 Clone & Setup
@@ -232,6 +233,7 @@ DeepL API	deepl.com/docs-api
 ├── docker-compose.yml
 ├── README.md
 └── frontend (coming soon)
+
 For questions, feedback, or collaboration, reach out to Manaka Anthony Raphasha.
 
 This project embraces best practices for modern SaaS backend development, designed for maintainability, security, and cloud deployment readiness.
