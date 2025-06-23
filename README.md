@@ -162,23 +162,23 @@ Sample Request Body:
 
 
 #### 📦 Technology Stack
-    Layer	Technology
-    Backend	Symfony 6.4 (PHP 8.2)
-    Auth	LexikJWTAuthenticationBundle
-    Queue	Redis + Symfony Messenger
-    Database	MySQL 8.0
-    Container	Docker + Docker Compose
-    Translator	Google, DeepL, LibreTranslate, OpenAI
-    Frontend	React 18 + Redux Toolkit (upcoming)
+- Layer	Technology
+- Backend	Symfony 6.4 (PHP 8.2)
+- Auth	LexikJWTAuthenticationBundle
+- Queue	Redis + Symfony Messenger
+- Database	MySQL 8.0
+- Container	Docker + Docker Compose
+- Translator	Google, DeepL, LibreTranslate, OpenAI
+- Frontend	React 18 + Redux Toolkit (upcoming)
 
 ##### 🧪 Testing
-    Unit tests for translation engine logic
+- Unit tests for translation engine logic
 
-    Token and glossary replacement tests
+- Token and glossary replacement tests
 
-    Async Messenger job handler verification
+- Async Messenger job handler verification
 
-    JWT authentication and security tests
+- JWT authentication and security tests
 
 #### 👩‍💻 Developer Guidance
 Environment Setup
