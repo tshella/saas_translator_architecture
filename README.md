@@ -70,11 +70,11 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
     cd saas_translator_architecture
     ./backend/scripts/setup.sh
 
-    2. Seed Sample Data
+### 2. Seed Sample Data
     
     ./backend/scripts/seed.sh
 
-    3. Start Translation Worker (in a new terminal)
+### 3. Start Translation Worker (in a new terminal)
    
     docker exec -it symfony_app php bin/console app:consume-translations
 
@@ -178,30 +178,30 @@ Sample Request Body:
 
 #### 👩‍💻 Developer Guidance
 Environment Setup
-        Ensure Docker and Docker Compose are installed.
+    Ensure Docker and Docker Compose are installed.
 
-        Use ./backend/scripts/setup.sh to start with a clean environment.
+    Use ./backend/scripts/setup.sh to start with a clean environment.
 
-        Export .env variables before running commands locally, e.g.,
+    Export .env variables before running commands locally, e.g.,
 
 
-        export $(grep -v '^#' .env | xargs)
-        Common Commands
-        Command	Description
-        make build	Build backend Docker image
-        make up	Start all containers
-        make down	Stop all containers
-        make migrate	Run Doctrine migrations
-        make seed	Seed the database
-        make shell	Enter backend container shell
-        make worker	Start translation queue worker
+    export $(grep -v '^#' .env | xargs)
+    Common Commands
+    Command	Description
+    make build	Build backend Docker image
+    make up	Start all containers
+    make down	Stop all containers
+    make migrate	Run Doctrine migrations
+    make seed	Seed the database
+    make shell	Enter backend container shell
+    make worker	Start translation queue worker
 
-        Code Standards
-        Follow PSR-12 coding standard for PHP.
+    Code Standards
+    Follow PSR-12 coding standard for PHP.
 
-        Use tools like phpstan and php-cs-fixer (planned).
+    Use tools like phpstan and php-cs-fixer (planned).
 
-        Write clear, modular, and testable code.
+    Write clear, modular, and testable code.
 
 #### 📊 Metrics & Diagrams
 (Placeholder for architecture diagrams, flowcharts, or graphs)
