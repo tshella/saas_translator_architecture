@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     autoconf pkg-config build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Configure and install PHP extensions (gd with freetype and jpeg)
+# Configure and install PHP extensions (gd with freetype and jpeg) including pdo_mysql and pdo_pgsql
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) pdo_mysql pdo_pgsql zip intl opcache sodium bcmath sockets gd xsl \
     && docker-php-ext-enable sodium

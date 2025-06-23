@@ -9,4 +9,7 @@ return [
 
     // DebugBundle only enabled in dev environment
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true],
+
+    // MakerBundle enabled only in dev and test environments
+    Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true, 'test' => true],
 ];

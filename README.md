@@ -1,5 +1,9 @@
 # 🧠 saas_translator_architecture
 
+![PHP](https://img.shields.io/badge/PHP-8.2-blue?logo=php&logoColor=white)  
+![React](https://img.shields.io/badge/React-18-blue?logo=react&logoColor=white)  
+![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker&logoColor=white)  
+
 A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** backend and **React/Redux** frontend (upcoming). Engineered for **scalability, modularity, and performance** by leveraging:
 
 - SOLID object-oriented design principles  
@@ -44,27 +48,18 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 ├── README.md
 └── frontend (coming soon)
 ✅ Features Implemented
-Symfony API-driven backend: Fully modular, extensible architecture
-
-Dockerized environment: Includes PHP, MySQL, Redis
-
-Asynchronous queue processing: Symfony Messenger + Redis backend
-
-Strategy-based translation engine: Supports Google, DeepL, LibreTranslate, OpenAI
-
-Glossary-based term replacement: Customizable dictionary integration
-
-Tone decorators: Formal, casual, professional modes
-
-JWT authentication: Via Lexik JWT Authentication bundle with role-based security
-
-Database automation: Auto-creation and migrations with Doctrine
-
-Shell scripts: Setup, migration, seeding automation
-
-Makefile & docker-entrypoint.sh: Clean orchestration and lifecycle management
-
-Compatibility: Works with Symfony CLI, Docker, and native PHP runtime
+Feature	Status	Description
+Symfony API-driven backend	✅ Done	Modular, extensible architecture
+Dockerized environment	✅ Done	PHP, MySQL, Redis containers
+Async queue processing	✅ Done	Symfony Messenger + Redis
+Strategy-based translation engine	✅ Done	Google, DeepL, LibreTranslate, OpenAI support
+Glossary-based term replacement	✅ Done	Customizable dictionary integration
+Tone decorators	✅ Done	Formal, casual, professional tone modes
+JWT authentication	✅ Done	Lexik JWT bundle with role-based security
+Database automation	✅ Done	Auto-creation & migrations with Doctrine
+Shell scripts	✅ Done	Setup, migration, seeding automation
+Makefile & docker-entrypoint	✅ Done	Clean orchestration & lifecycle management
+Compatibility	✅ Done	Symfony CLI, Docker, native PHP runtime
 
 🚀 Quick Start
 1. Clone & Setup
@@ -86,6 +81,7 @@ Method	Endpoint	Description
 POST	/api/translate	Queue a translation job
 
 Sample Request Body
+
 json
 Copy
 {
@@ -94,29 +90,25 @@ Copy
   "to": "es"
 }
 🧠 Design Principles
-SOLID Principles: Clean, maintainable OOP
+Principle	Description
+SOLID Principles	Clean, maintainable object-oriented code
+Strategy Pattern	Easily add or switch translation engines
+Async Messaging	Reliable queue with Symfony Messenger + Redis
+JWT Authentication	Secure, stateless API with role-based access
+Docker-First	One command to build & run full environment
+Modular Structure	Clear separation of concerns for extensibility
 
-Strategy Pattern: Easily add or switch translation engines
-
-Async Messaging: Reliable queue with Symfony Messenger and Redis
-
-JWT Authentication: Secure, stateless API with role-based access control
-
-Docker-First Approach: One command to build and run the full environment
-
-Modular Structure: Clear separation of concerns for extensibility and testability
-
-🗺 Updated Roadmap
+🗺 Roadmap
 Stage	Feature	Status
 1	Symfony backend + API routing	✅ Done
-2	Redis queue + async job processor	✅ Done
+2	Redis queue + async processor	✅ Done
 3	Glossary + Tone decorators	✅ Done
-4	LibreTranslate + external API support	✅ Done
+4	LibreTranslate + external APIs	✅ Done
 5	JWT auth + middleware firewall	✅ Done
-6	Docker entrypoint & Makefile automation	✅ Done
+6	Docker entrypoint & Makefile	✅ Done
 7	React/Redux frontend scaffold	🔜 Next
 8	Login UI + token persistence	🔜 Next
-9	Billing support + metering dashboard	🔜 Planned
+9	Billing + metering dashboard	🔜 Planned
 10	Multi-tenant SaaS billing engine	🔜 Planned
 11	Locale switching & usage analytics	🔜 Planned
 
@@ -139,29 +131,54 @@ Async Messenger job handler verification
 
 JWT authentication and security tests
 
+👩‍💻 Developer Guidance
+Environment Setup
+Ensure you have Docker and Docker Compose installed.
+
+Use ./backend/scripts/setup.sh to start with a clean environment.
+
+Export .env variables before running commands locally, e.g.,
+
+bash
+Copy
+export $(grep -v '^#' .env | xargs)
+Common Commands
+Command	Description
+make build	Build backend Docker image
+make up	Start all containers
+make down	Stop all containers
+make migrate	Run Doctrine migrations
+make seed	Seed the database
+make shell	Enter backend container shell
+make worker	Start translation queue worker
+
+Code Standards
+Follow PSR-12 coding standard for PHP.
+
+Use phpstan and php-cs-fixer (planned).
+
+Write clear, modular, and testable code.
+
+📊 Metrics & Diagrams
+Architecture Overview (placeholder image)
+
+Deployment Flow (placeholder image)
+
 🤝 Contributing
-Coming soon:
+Issue templates and pull request guidelines will be added soon.
 
-Issue templates
+CI/CD workflows with GitHub Actions are planned.
 
-Code standards and style guides
-
-GitHub Actions for CI/CD
-
-Full documentation site
+Please submit issues and PRs for bugs and improvements.
 
 📚 Additional Resources
-Symfony Documentation
-
-Lexik JWT Authentication Bundle
-
-Symfony Messenger
-
-Docker Compose
-
-Google Translate API
-
-DeepL API
+Resource	Link
+Symfony Documentation	https://symfony.com/doc/current/index.html
+Lexik JWT Authentication Bundle	https://github.com/lexik/LexikJWTAuthenticationBundle
+Symfony Messenger	https://symfony.com/doc/current/messenger.html
+Docker Compose	https://docs.docker.com/compose/
+Google Translate API	https://cloud.google.com/translate/docs
+DeepL API	https://www.deepl.com/docs-api
 
 For questions, feedback, or collaboration, reach out to Manaka Anthony Raphasha.
 
