@@ -189,9 +189,10 @@ Use ./backend/scripts/setup.sh to start with a clean environment.
 Export .env variables before running commands locally, e.g.,
 
 
-export $(grep -v '^#' .env | xargs)
+    export $(grep -v '^#' .env | xargs)
 Common Commands
 Command	Description
+```plaintext
     make build	Build backend Docker image
     make up	Start all containers
     make down	Stop all containers
@@ -219,12 +220,12 @@ Write clear, modular, and testable code.
 
 #### 📚 Additional Resources
 Resource	Link
-Symfony Documentation	[Click here]https://symfony.com/doc/current
-Lexik JWT Authentication Bundle	[Click here]github.com/lexik/LexikJWTAuthenticationBundle
-Symfony Messenger	[Click here]symfony.com/doc/current/messenger.html
+Symfony Documentation	https://symfony.com/doc/current
+Lexik JWT Authentication Bundle	https://github.com/lexik/LexikJWTAuthenticationBundle
+Symfony Messenger	https://symfony.com/doc/current/messenger.html
 Docker Compose	docs.docker.com/compose
-Google Translate API	cloud.google.com/translate/docs
-DeepL API	deepl.com/docs-api
+Google Translate API	https://cloud.google.com/translate/docs
+DeepL API	https://deepl.com/docs-api
 
 
 
