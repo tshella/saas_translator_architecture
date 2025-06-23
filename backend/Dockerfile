@@ -1,48 +1,56 @@
-# Use official PHP CLI image as base
-FROM php:8.2-cli
+# Stage 1: Builder with official PHP image to build and install extensions, Composer, dependencies
+FROM php:8.3-cli AS builder
 
-# Install system dependencies and PHP extensions
+# Install system dependencies needed for building extensions and your app
 RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    zip \
-    curl \
-    libpq-dev \
-    libzip-dev \
-    libsodium-dev \
-    libonig-dev \
-    libicu-dev \
-    libxml2-dev \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    libxslt1-dev \
-    libssl-dev \
-    netcat-openbsd \
-    && docker-php-ext-install pdo_mysql zip intl opcache sodium bcmath sockets \
-    && docker-php-ext-enable sodium \
+    git unzip zip curl libpq-dev libzip-dev libsodium-dev libonig-dev libicu-dev libxml2-dev \
+    libpng-dev libjpeg-dev libfreetype6-dev libxslt1-dev libssl-dev netcat-openbsd \
+    autoconf pkg-config build-essential \
     && rm -rf /var/lib/apt/lists/*
+
+# Configure and install PHP extensions (gd with freetype and jpeg)
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) pdo_mysql pdo_pgsql zip intl opcache sodium bcmath sockets gd xsl \
+    && docker-php-ext-enable sodium
 
 # Install Composer globally
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Set working directory inside container
-WORKDIR /var/www
-
-# Copy all project files including bin/console
+# Copy project files into builder
+WORKDIR /app
 COPY . .
 
-# Fix permissions for var/cache and var/log (Symfony expects writable)
-RUN mkdir -p var/cache var/log && chown -R www-data:www-data var
-
-# Make bin/console executable
-RUN chmod +x bin/console
-
-# Install PHP dependencies with optimized autoloader, no interaction
+# Install PHP dependencies with optimized autoloader
 RUN composer install --no-interaction --optimize-autoloader
 
-# Expose port 8000 for Symfony built-in server
+# Stage 2: Runtime stage with Fedora base image
+FROM fedora:39
+
+# Install runtime dependencies only (no dev packages)
+RUN dnf -y install \
+    php-cli php-pgsql php-mbstring php-opcache php-bcmath php-sockets php-gd php-intl php-zip php-xsl \
+    libsodium git unzip zip curl libpq oniguruma freetype libjpeg-turbo libpng libxml2 openssl netcat-openbsd \
+    && dnf clean all
+
+# Copy PHP and Composer from builder stage
+COPY --from=builder /usr/local/etc/php /usr/local/etc/php
+COPY --from=builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
+COPY --from=builder /usr/local/bin/php /usr/local/bin/php
+COPY --from=builder /usr/bin/composer /usr/bin/composer
+
+# Copy project files from builder (already composer installed)
+COPY --from=builder /app /var/www
+
+WORKDIR /var/www
+
+# Fix permissions for cache and logs
+RUN mkdir -p var/cache var/log && chown -R 1000:1000 var
+
+# Make console executable
+RUN chmod +x bin/console
+
+# Expose Symfony dev server port
 EXPOSE 8000
 
-# Default command to run Symfony built-in PHP server
+# Default command: Symfony built-in web server (development)
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
