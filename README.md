@@ -19,7 +19,7 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 
 ---
 
-    ## 🧱 Project Structure
+## 🧱 Project Structure
 
     
     .
@@ -115,7 +115,7 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
     
     php -S 0.0.0.0:8000 -t public
 
-📡 API Endpoints (v1)
+#### 📡 API Endpoints (v1)
 Method	Endpoint	Description
 POST	/api/translate	Queue a translation job
 
@@ -131,14 +131,14 @@ Sample Request Body:
     vbnet
     Copy
 
-🧠 Design Principles
-Principle	Description
-SOLID Principles	Clean, maintainable object-oriented code
-Strategy Pattern	Easily add or switch translation engines
-Async Messaging	Reliable queue with Symfony Messenger + Redis
-JWT Authentication	Secure, stateless API with role-based access
-Docker-First	One command to build & run full environment
-Modular Structure	Clear separation of concerns for extensibility
+#### 🧠 Design Principles
+    Principle	Description
+    SOLID Principles	Clean, maintainable object-oriented code
+    Strategy Pattern	Easily add or switch translation engines
+    Async Messaging	Reliable queue with Symfony Messenger + Redis
+    JWT Authentication	Secure, stateless API with role-based access
+    Docker-First	One command to build & run full environment
+    Modular Structure	Clear separation of concerns for extensibility
 
 🗺 Roadmap
 
@@ -157,64 +157,63 @@ Modular Structure	Clear separation of concerns for extensibility
 | 11    | Locale switching & usage analytics | 🔜 Planned |
 
 
-📦 Technology Stack
-Layer	Technology
-Backend	Symfony 6.4 (PHP 8.2)
-Auth	LexikJWTAuthenticationBundle
-Queue	Redis + Symfony Messenger
-Database	MySQL 8.0
-Container	Docker + Docker Compose
-Translator	Google, DeepL, LibreTranslate, OpenAI
-Frontend	React 18 + Redux Toolkit (upcoming)
+#### 📦 Technology Stack
+    Layer	Technology
+    Backend	Symfony 6.4 (PHP 8.2)
+    Auth	LexikJWTAuthenticationBundle
+    Queue	Redis + Symfony Messenger
+    Database	MySQL 8.0
+    Container	Docker + Docker Compose
+    Translator	Google, DeepL, LibreTranslate, OpenAI
+    Frontend	React 18 + Redux Toolkit (upcoming)
 
-🧪 Testing
-Unit tests for translation engine logic
+##### 🧪 Testing
+    Unit tests for translation engine logic
 
-Token and glossary replacement tests
+    Token and glossary replacement tests
 
-Async Messenger job handler verification
+    Async Messenger job handler verification
 
-JWT authentication and security tests
+    JWT authentication and security tests
 
-👩‍💻 Developer Guidance
+#### 👩‍💻 Developer Guidance
 Environment Setup
-Ensure Docker and Docker Compose are installed.
+        Ensure Docker and Docker Compose are installed.
 
-Use ./backend/scripts/setup.sh to start with a clean environment.
+        Use ./backend/scripts/setup.sh to start with a clean environment.
 
-Export .env variables before running commands locally, e.g.,
+        Export .env variables before running commands locally, e.g.,
 
-bash
-Copy
-export $(grep -v '^#' .env | xargs)
-Common Commands
-Command	Description
-make build	Build backend Docker image
-make up	Start all containers
-make down	Stop all containers
-make migrate	Run Doctrine migrations
-make seed	Seed the database
-make shell	Enter backend container shell
-make worker	Start translation queue worker
 
-Code Standards
-Follow PSR-12 coding standard for PHP.
+        export $(grep -v '^#' .env | xargs)
+        Common Commands
+        Command	Description
+        make build	Build backend Docker image
+        make up	Start all containers
+        make down	Stop all containers
+        make migrate	Run Doctrine migrations
+        make seed	Seed the database
+        make shell	Enter backend container shell
+        make worker	Start translation queue worker
 
-Use tools like phpstan and php-cs-fixer (planned).
+        Code Standards
+        Follow PSR-12 coding standard for PHP.
 
-Write clear, modular, and testable code.
+        Use tools like phpstan and php-cs-fixer (planned).
 
-📊 Metrics & Diagrams
+        Write clear, modular, and testable code.
+
+#### 📊 Metrics & Diagrams
 (Placeholder for architecture diagrams, flowcharts, or graphs)
 
-🤝 Contributing
+#### 🤝 Contributing
 Issue templates and pull request guidelines will be added soon.
 
 CI/CD workflows with GitHub Actions are planned.
 
 Please submit issues and pull requests for bugs and improvements.
 
-📚 Additional Resources
+#### 📚 Additional Resources
 Resource	Link
 Symfony Documentation	symfony.com/doc/current
 Lexik JWT Authentication Bundle	github.com/lexik/LexikJWTAuthenticationBundle
