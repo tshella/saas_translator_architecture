@@ -1,7 +1,7 @@
-# Stage 1: Build PHP app with dependencies
+# Stage 1: Symfony PHP 8.2 CLI setup
 FROM php:8.2-cli AS symfony
 
-# Install system dependencies
+# Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libxslt1-dev \
     libssl-dev \
+    netcat \
     && docker-php-ext-install \
         pdo_mysql \
         zip \
@@ -27,23 +28,23 @@ RUN apt-get update && apt-get install -y \
         bcmath \
         sockets
 
-# Install Composer globally
+# Install Composer globally from composer image
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Create working directory
+# Set working directory
 WORKDIR /var/www
 
-# Copy project files
+# Copy Symfony project files
 COPY . .
 
-# Set proper permissions for cache/logs
+# Set correct permissions
 RUN mkdir -p var/cache var/log && chown -R www-data:www-data var
 
-# Install PHP dependencies
+# Run Composer install (again for final image)
 RUN composer install --no-interaction --optimize-autoloader
 
-# Ensure bin/console is executable
+# Make Symfony CLI script executable
 RUN chmod +x bin/console
 
-# Default command
-CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+# Entry point
+ENTRYPOINT ["./docker-entrypoint.sh"]

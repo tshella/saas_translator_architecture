@@ -1,154 +1,151 @@
-# 🧠 saas_translator_architecture
+🧠 saas_translator_architecture
+SaaS-grade language translator using Symfony (PHP 8.2) for the backend and React/Redux for the frontend. Designed for scalability, modularity, and performance—leveraging SOLID principles, strategy patterns, JWT auth, and cloud-native architecture.
 
-> SaaS-grade language translator built with **Symfony (PHP backend)** and **React/Redux (frontend)**. Designed for scalability, reusability, and cloud-native deployment. Modular by design, using **SOLID principles**, **asynchronous processing**, and **multi-provider translation engines**.
 
----
 
-**Created & maintained by**: Manaka Anthony Raphasha
 
----
 
-## 📁 Project Structure
+Created and maintained by: Manaka Anthony Raphasha
 
-```plaintext
+🧱 Project Structure
+arduino
+Copy
+Edit
 .
 ├── backend
 │   ├── Dockerfile
 │   ├── docker-entrypoint.sh
 │   ├── Makefile
 │   ├── composer.json
-│   ├── scripts/
+│   ├── .env
+│   ├── scripts
 │   │   ├── setup.sh
 │   │   ├── migrate.sh
 │   │   └── seed.sh
-│   ├── src/
-│   │   ├── Command/
-│   │   ├── Controller/
-│   │   ├── Entity/
-│   │   ├── Message/
-│   │   ├── Repository/
-│   │   ├── Security/
-│   │   └── Service/
-│   ├── config/
-│   │   ├── bundles.php
-│   │   ├── packages/
-│   │   └── routes.yaml
-│   └── .env
+│   ├── src
+│   │   ├── Command
+│   │   ├── Controller
+│   │   ├── Entity
+│   │   ├── Message
+│   │   ├── Repository
+│   │   ├── Security
+│   │   └── Service
+│   └── config
+│       ├── services.yaml
+│       └── jwt/
 ├── docker-compose.yml
 ├── README.md
-└── frontend (🔜 Coming soon)
-✅ Features
-✅ Modular Symfony backend (API-first, headless)
+└── frontend (coming soon)
+✅ Features Implemented
+ ✅ Symfony API-driven backend (modular)
 
-✅ Redis-powered job queue via Symfony Messenger
+ ✅ Dockerized setup (PHP + MySQL + Redis)
 
-✅ Strategy-based translation engine:
+ ✅ Async queue with Messenger + Redis
 
-Google
+ ✅ Strategy-based translation engine (Google, DeepL, LibreTranslate, OpenAI)
 
-DeepL
+ ✅ Glossary-based term replacement
 
-OpenAI
+ ✅ Tone decorator (formal, casual, professional)
 
-LibreTranslate
+ ✅ JWT authentication (via Lexik bundle)
 
-✅ Glossary term replacement (domain-sensitive translation)
+ ✅ DB auto-creation + migrations
 
-✅ Tone decorator (formal/informal/professional toggling)
+ ✅ Shell scripts for install, seed, migration
 
-✅ JWT Auth (stateless, secured APIs)
+ ✅ Improved Makefile + docker-entrypoint.sh for clean orchestration
 
-✅ MySQL with automatic migration + seeding
-
-✅ Docker-based setup with Redis, DB, LibreTranslate
+ ✅ Compatible with Symfony CLI, Docker, and native PHP
 
 🚀 Quick Start
-🐳 1. Setup via Docker
+1. Clone & Build
 bash
 Copy
 Edit
 git clone https://github.com/your-org/saas_translator_architecture.git
 cd saas_translator_architecture
 ./backend/scripts/setup.sh
-This will build containers, install dependencies, run migrations, and generate JWT keys.
-
-🌱 2. Seed the Database
+2. Seed Sample Data
 bash
 Copy
 Edit
 ./backend/scripts/seed.sh
-⚙️ 3. Start Translation Worker
+3. Start Translation Worker (in another terminal)
 bash
 Copy
 Edit
-docker compose exec app php bin/console app:consume-translations
-📡 API Endpoints
-Method	Path	Description
-POST	/api/translate	Submit a new translation job
+docker exec -it symfony_app php bin/console app:consume-translations
+📡 API Endpoints (v1)
+Method	Endpoint	Description
+POST	/api/translate	Queue a translation job
 
-Sample Request
+Sample Request Body:
+
 json
 Copy
 Edit
 {
-  "text": "Hello world!",
+  "text": "Hello",
   "from": "en",
   "to": "es"
 }
-🧠 Architecture Principles
-SOLID: Service interfaces and responsibilities clearly separated
+🧠 Design Principles
+SOLID Principles – clean, scalable OOP
 
-Strategy Pattern: Translator engines are swappable via TranslatorInterface
+Strategy Pattern – plug in new engines easily
 
-Decorator Pattern: Glossary and tone adjusters wrap core logic
+Async Messaging – Messenger + Redis
 
-Asynchronous: Redis + Messenger queue ensures scalability
+JWT Auth – secure API with role-based access
 
-Secure: JWT-authenticated endpoints
+Docker-First – one command to build all
 
-🗺 Roadmap
-Milestone	Feature	Status
-✅	Symfony backend setup	Completed
-✅	Redis & async messaging	Completed
-✅	Multi-engine translator factory	Completed
-✅	JWT auth & secure routes	Completed
-✅	LibreTranslate integration	Completed
-🔜	React/Redux frontend scaffold	Next
-🔜	UI for auth, queue, and billing	Planned
-🔜	API usage metering + analytics	Planned
-🔜	Stripe/SaaS billing integration	Planned
+Modular Structure – easy to extend and test
+
+🗺 Updated Roadmap
+Stage	Feature	Status
+1	Symfony backend + API routing	✅ Done
+2	Redis queue + async job processor	✅ Done
+3	Glossary + Tone decorators	✅ Done
+4	LibreTranslate + external API support	✅ Done
+5	JWT auth + middleware firewall	✅ Done
+6	Docker entrypoint & Makefile automation	✅ Done
+7	React/Redux frontend scaffold	🔜 Next
+8	Login UI + token persistence	🔜 Next
+9	Billing support + metering dashboard	🔜 Planned
+10	Multi-tenant SaaS billing engine	🔜 Planned
+11	Locale switching & usage analytics	🔜 Planned
+
+📦 Technology Stack
+Layer	Tech
+Backend	Symfony 6.4 (PHP 8.2)
+Auth	LexikJWTAuthenticationBundle
+Queue	Redis + Symfony Messenger
+DB	MySQL 8.0
+Container	Docker + Docker Compose
+Translator	Google, DeepL, LibreTranslate, OpenAI
+Frontend	React 18 + Redux Toolkit (upcoming)
 
 🧪 Testing
-Unit & integration tests (WIP) will cover:
+Planned and partially implemented:
 
-Translation Engine logic
+Unit tests for translation logic
 
-Queue processing
+Token + glossary replacement tests
 
-Glossary and tone decorators
+Messenger job handler verification
 
-Authentication & authorization
-
-⚙️ Stack Overview
-Layer	Tech Stack
-Backend	Symfony 6 (PHP 8.2)
-Queue	Redis + Symfony Messenger
-Database	MySQL 8.0
-Auth	LexikJWTBundle + lcobucci/jwt
-Translate	Google, DeepL, OpenAI, LibreTranslate
-Container	Docker + Compose
-Frontend	React + Redux Toolkit (🔜 Upcoming)
+JWT security checks
 
 🤝 Contributing
-A full contributing guide, GitHub Actions CI, and feature templates will be added after frontend MVP.
+Coming soon:
 
-PRs welcome for:
+🛠 Issue templates
 
-Translation provider extensions
+✅ Code standards
 
-Improved error handling
+🧪 GitHub Actions CI/CD
 
-Rate-limiting / API analytics
-
-Frontend collaboration
-
+📚 Documentation site
