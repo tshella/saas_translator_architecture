@@ -62,9 +62,9 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 | Makefile & docker-entrypoint | ✅ Done  | Clean orchestration & lifecycle management |
 | Compatibility               | ✅ Done  | Symfony CLI, Docker, native PHP runtime    |
 
-    ## 🚀 Quick Start
+ ## 🚀 Quick Start
 
-    ### 1. Clone & Setup
+ ### 1. Clone & Setup
 
     git clone https://github.com/your-org/saas_translator_architecture.git
     cd saas_translator_architecture
@@ -77,7 +77,8 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
     3. Start Translation Worker (in a new terminal)
    
     docker exec -it symfony_app php bin/console app:consume-translations
-    ⚙️ How to Use
+
+ ⚙️ How to Use
     Running the Application
     Once the setup and seed scripts complete, access the backend API at:
 
@@ -85,8 +86,7 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
     Use the /api/translate endpoint to queue translation jobs via HTTP POST requests.
 
     Example cURL Request
-    bash
-    Copy
+    
     curl -X POST http://localhost:8000/api/translate \
     -H "Content-Type: application/json" \
     -d '{"text": "Hello", "from": "en", "to": "es"}'
