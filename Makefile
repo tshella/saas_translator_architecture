@@ -18,12 +18,12 @@ build:
 ## Start Docker containers (detached)
 up:
 	@echo "Starting Docker containers..."
-	docker compose $(COMPOSE_FILE) up -d
+	docker compose up -d
 
 ## Stop Docker containers
 down:
 	@echo "Stopping Docker containers..."
-	docker compose $(COMPOSE_FILE) down -v --remove-orphans
+	docker compose down -v --remove-orphans
 
 ## Restart Docker containers
 restart: down up
@@ -32,7 +32,7 @@ restart: down up
 ## View logs for all containers
 logs:
 	@echo "Showing logs..."
-	docker compose $(COMPOSE_FILE) logs -f
+	docker compose logs -f
 
 ## Run shell inside backend container
 shell:

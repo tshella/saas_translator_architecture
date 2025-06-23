@@ -20,9 +20,12 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 # Install Composer globally
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Set working directory and copy project files
+# Set working directory and copy project files including migrations folder
 WORKDIR /app
 COPY . .
+
+# Make sure migrations directory exists (fixes doctrine error)
+RUN mkdir -p migrations
 
 # Install PHP dependencies with optimized autoloader, now with DATABASE_URL available for cache clear
 RUN composer install --no-interaction --optimize-autoloader
@@ -42,7 +45,7 @@ COPY --from=builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 COPY --from=builder /usr/local/bin/php /usr/local/bin/php
 COPY --from=builder /usr/bin/composer /usr/bin/composer
 
-# Copy the fully prepared app directory from builder
+# Copy the fully prepared app directory from builder (including migrations)
 COPY --from=builder /app /var/www
 
 WORKDIR /var/www

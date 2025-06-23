@@ -16,7 +16,7 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerOJXMvlx\App_KernelDevDebugContainer([
     'container.build_hash' => 'OJXMvlx',
-    'container.build_id' => '22fdb874',
-    'container.build_time' => 1750711401,
+    'container.build_id' => '1712bfde',
+    'container.build_time' => 1750713504,
     'container.runtime_mode' => \in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? 'web=0' : 'web=1',
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerOJXMvlx');
