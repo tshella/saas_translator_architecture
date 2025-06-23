@@ -47,7 +47,6 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 ├── docker-compose.yml
 ├── README.md
 └── frontend (coming soon)
-
 ✅ Features Implemented
 Feature	Status	Description
 Symfony API-driven backend	✅ Done	Modular, extensible architecture
@@ -80,6 +79,54 @@ Start Translation Worker (in a new terminal)
 bash
 Copy
 docker exec -it symfony_app php bin/console app:consume-translations
+⚙️ How to Use
+Running the Application
+Once the setup and seed scripts are complete, access the backend API at:
+
+bash
+Copy
+http://localhost:8000/api/translate
+Use the /api/translate endpoint to queue translation jobs via HTTP POST requests.
+
+Example cURL Request
+bash
+Copy
+curl -X POST http://localhost:8000/api/translate \
+  -H "Content-Type: application/json" \
+  -d '{"text": "Hello", "from": "en", "to": "es"}'
+Translation Worker
+Keep the translation worker running in a separate terminal to process queued translation jobs asynchronously:
+
+bash
+Copy
+docker exec -it symfony_app php bin/console app:consume-translations
+Running Locally (Without Docker)
+Export environment variables:
+
+bash
+Copy
+export $(grep -v '^#' .env | xargs)
+Install PHP dependencies:
+
+bash
+Copy
+composer install
+Create database and run migrations:
+
+bash
+Copy
+php bin/console doctrine:database:create --if-not-exists
+php bin/console doctrine:migrations:migrate
+Seed the database:
+
+bash
+Copy
+php bin/console app:seed
+Start Symfony local server:
+
+bash
+Copy
+php -S 0.0.0.0:8000 -t public
 📡 API Endpoints (v1)
 Method	Endpoint	Description
 POST	/api/translate	Queue a translation job
@@ -185,6 +232,3 @@ DeepL API	deepl.com/docs-api
 For questions, feedback, or collaboration, reach out to Manaka Anthony Raphasha.
 
 This project embraces best practices for modern SaaS backend development, designed for maintainability, security, and cloud deployment readiness.
-
-yaml
-Copy
