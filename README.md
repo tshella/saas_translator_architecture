@@ -21,7 +21,7 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 
 ## 🧱 Project Structure
 
-```plaintext
+
 .
 ├── backend
 │   ├── Dockerfile
@@ -47,6 +47,8 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 ├── docker-compose.yml
 ├── README.md
 └── frontend (coming soon)
+
+
 ✅ Features Implemented
 Feature	Status	Description
 Symfony API-driven backend	✅ Done	Modular, extensible architecture
