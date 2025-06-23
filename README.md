@@ -82,33 +82,35 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
     Running the Application
     Once the setup and seed scripts complete, access the backend API at:
 
-    http://localhost:8000/api/translate
-    Use the /api/translate endpoint to queue translation jobs via HTTP POST requests.
+http://localhost:8000/api/translate
+Use the /api/translate endpoint to queue translation jobs via HTTP POST requests.
 
-    Example cURL Request
+Example cURL Request
     
     curl -X POST http://localhost:8000/api/translate \
     -H "Content-Type: application/json" \
     -d '{"text": "Hello", "from": "en", "to": "es"}'
-    Translation Worker
-    Keep the translation worker running in a separate terminal to process queued translation jobs asynchronously:
+
+Translation Worker
+Keep the translation worker running in a separate terminal to process queued translation jobs asynchronously:
 
     docker exec -it symfony_app php bin/console app:consume-translations
     Running Locally (Without Docker)
     Export environment variables:
 
     export $(grep -v '^#' .env | xargs)
-    Install PHP dependencies:
+
+Install PHP dependencies:
 
     composer install
-    Create database and run migrations:
 
-    
+Create database and run migrations:
+
     php bin/console doctrine:database:create --if-not-exists
     php bin/console doctrine:migrations:migrate
-    Seed the database:
 
-    
+Seed the database:
+
     php bin/console app:seed
     Start Symfony local server:
 
@@ -128,7 +130,6 @@ POST	/api/translate	Queue a translation job
         "from": "en",
         "to": "es"
         }
-        vbnet
        
 
 #### 🧠 Design Principles
