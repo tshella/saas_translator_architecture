@@ -121,7 +121,7 @@ Seed the database:
 Method	Endpoint	Description
 POST	/api/translate	Queue a translation job
 
-    Sample Request Body:
+Sample Request Body:
 
     json
  
@@ -133,13 +133,16 @@ POST	/api/translate	Queue a translation job
        
 
 #### 🧠 Design Principles
-    Principle	Description
-    SOLID Principles	Clean, maintainable object-oriented code
-    Strategy Pattern	Easily add or switch translation engines
-    Async Messaging	Reliable queue with Symfony Messenger + Redis
-    JWT Authentication	Secure, stateless API with role-based access
-    Docker-First	One command to build & run full environment
-    Modular Structure	Clear separation of concerns for extensibility
+
+--
+**Principle	Description**
+
+- SOLID Principles	Clean, maintainable object-oriented code
+- Strategy Pattern	Easily add or switch translation engines
+- Async Messaging	Reliable queue with Symfony Messenger + Redis
+- JWT Authentication	Secure, stateless API with role-based access
+- Docker-First	One command to build & run full environment
+- Modular Structure	Clear separation of concerns for extensibility
 
 🗺 Roadmap
 
