@@ -46,8 +46,7 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 │       └── jwt/
 ├── docker-compose.yml
 ├── README.md
-└── frontend (coming soon) ```plaintext
----
+└── frontend (coming soon)
 
 ✅ Features Implemented
 Feature	Status	Description
@@ -64,17 +63,20 @@ Makefile & docker-entrypoint	✅ Done	Clean orchestration & lifecycle management
 Compatibility	✅ Done	Symfony CLI, Docker, native PHP runtime
 
 🚀 Quick Start
-1. Clone & Setup
+Clone & Setup
+
 bash
 Copy
 git clone https://github.com/your-org/saas_translator_architecture.git
 cd saas_translator_architecture
 ./backend/scripts/setup.sh
-2. Seed Sample Data
+Seed Sample Data
+
 bash
 Copy
 ./backend/scripts/seed.sh
-3. Start Translation Worker (in a new terminal)
+Start Translation Worker (in a new terminal)
+
 bash
 Copy
 docker exec -it symfony_app php bin/console app:consume-translations
@@ -82,7 +84,7 @@ docker exec -it symfony_app php bin/console app:consume-translations
 Method	Endpoint	Description
 POST	/api/translate	Queue a translation job
 
-Sample Request Body
+Sample Request Body:
 
 json
 Copy
@@ -135,7 +137,7 @@ JWT authentication and security tests
 
 👩‍💻 Developer Guidance
 Environment Setup
-Ensure you have Docker and Docker Compose installed.
+Ensure Docker and Docker Compose are installed.
 
 Use ./backend/scripts/setup.sh to start with a clean environment.
 
@@ -157,31 +159,32 @@ make worker	Start translation queue worker
 Code Standards
 Follow PSR-12 coding standard for PHP.
 
-Use phpstan and php-cs-fixer (planned).
+Use tools like phpstan and php-cs-fixer (planned).
 
 Write clear, modular, and testable code.
 
 📊 Metrics & Diagrams
-Architecture Overview (placeholder image)
-
-Deployment Flow (placeholder image)
+(Placeholder for architecture diagrams, flowcharts, or graphs)
 
 🤝 Contributing
 Issue templates and pull request guidelines will be added soon.
 
 CI/CD workflows with GitHub Actions are planned.
 
-Please submit issues and PRs for bugs and improvements.
+Please submit issues and pull requests for bugs and improvements.
 
 📚 Additional Resources
 Resource	Link
-Symfony Documentation	https://symfony.com/doc/current/index.html
-Lexik JWT Authentication Bundle	https://github.com/lexik/LexikJWTAuthenticationBundle
-Symfony Messenger	https://symfony.com/doc/current/messenger.html
-Docker Compose	https://docs.docker.com/compose/
-Google Translate API	https://cloud.google.com/translate/docs
-DeepL API	https://www.deepl.com/docs-api
+Symfony Documentation	symfony.com/doc/current
+Lexik JWT Authentication Bundle	github.com/lexik/LexikJWTAuthenticationBundle
+Symfony Messenger	symfony.com/doc/current/messenger.html
+Docker Compose	docs.docker.com/compose
+Google Translate API	cloud.google.com/translate/docs
+DeepL API	deepl.com/docs-api
 
 For questions, feedback, or collaboration, reach out to Manaka Anthony Raphasha.
 
 This project embraces best practices for modern SaaS backend development, designed for maintainability, security, and cloud deployment readiness.
+
+yaml
+Copy
