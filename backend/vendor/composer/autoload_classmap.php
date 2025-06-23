@@ -12,6 +12,7 @@ return array(
     'App\\Entity\\Glossary' => $baseDir . '/src/Entity/Glossary.php',
     'App\\Entity\\TranslationJob' => $baseDir . '/src/Entity/TranslationJob.php',
     'App\\Entity\\User' => $baseDir . '/src/Entity/User.php',
+    'App\\Kernel' => $baseDir . '/src/Kernel.php',
     'App\\Message\\Handler\\TranslationRequestHandler' => $baseDir . '/src/Message/Handler/TranslationRequestHandler.php',
     'App\\Message\\TranslationRequest' => $baseDir . '/src/Message/TranslationRequest.php',
     'App\\Service\\Decorator\\GlossaryApplier' => $baseDir . '/src/Service/Decorator/GlossaryApplier.php',

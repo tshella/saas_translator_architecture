@@ -397,6 +397,7 @@ class ComposerStaticInit82282741f18e11a85ccb97532e244d35
         'App\\Entity\\Glossary' => __DIR__ . '/../..' . '/src/Entity/Glossary.php',
         'App\\Entity\\TranslationJob' => __DIR__ . '/../..' . '/src/Entity/TranslationJob.php',
         'App\\Entity\\User' => __DIR__ . '/../..' . '/src/Entity/User.php',
+        'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
         'App\\Message\\Handler\\TranslationRequestHandler' => __DIR__ . '/../..' . '/src/Message/Handler/TranslationRequestHandler.php',
         'App\\Message\\TranslationRequest' => __DIR__ . '/../..' . '/src/Message/TranslationRequest.php',
         'App\\Service\\Decorator\\GlossaryApplier' => __DIR__ . '/../..' . '/src/Service/Decorator/GlossaryApplier.php',
