@@ -33,10 +33,11 @@ RUN composer install --no-interaction --optimize-autoloader
 # Stage 2: Runtime stage with Fedora base image
 FROM fedora:39
 
-# Install runtime dependencies only (no dev packages)
+# Install runtime dependencies including libargon2 for PHP argon2 support
 RUN dnf -y install \
     php-cli php-pgsql php-mbstring php-opcache php-bcmath php-sockets php-gd php-intl php-zip php-xsl \
     libsodium git unzip zip curl libpq oniguruma freetype libjpeg-turbo libpng libxml2 openssl nmap-ncat \
+    libargon2 \
     && dnf clean all
 
 # Copy PHP config, extensions, PHP binary, and composer from builder
