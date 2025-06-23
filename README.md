@@ -51,7 +51,7 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 Feature	Status	Description
 Symfony API-driven backend	✅ Done	Modular, extensible architecture
 Dockerized environment	✅ Done	PHP, MySQL, Redis containers
-Async queue processing	✅ Done	Symfony Messenger + Redis
+Async queue processing	✅ Done	Symfony Messenger + Redis backend
 Strategy-based translation engine	✅ Done	Google, DeepL, LibreTranslate, OpenAI support
 Glossary-based term replacement	✅ Done	Customizable dictionary integration
 Tone decorators	✅ Done	Formal, casual, professional tone modes
