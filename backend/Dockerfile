@@ -1,10 +1,10 @@
-# Stage 1: Builder with official PHP image to build extensions, install composer and dependencies
-FROM php:8.3-cli AS builder
+# Stage 1: Builder with official PHP image (Debian-based, slim)
+FROM php:8.3-cli-bullseye AS builder
 
-# Install system dependencies needed for building extensions and your app
-RUN apt-get update && apt-get install -y \
+# Install system dependencies needed for building PHP extensions
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git unzip zip curl libpq-dev libzip-dev libsodium-dev libonig-dev libicu-dev libxml2-dev \
-    libpng-dev libjpeg-dev libfreetype6-dev libxslt1-dev libssl-dev netcat-openbsd \
+    libpng-dev libjpeg-dev libfreetype6-dev libxslt1-dev libssl-dev netcat \
     autoconf pkg-config build-essential \
     && rm -rf /var/lib/apt/lists/*
 
@@ -20,22 +20,19 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 
-# Set dummy DATABASE_URL so cache clear does not fail during composer install
-ENV DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
-
 # Install PHP dependencies with optimized autoloader
 RUN composer install --no-interaction --optimize-autoloader
 
-# Stage 2: Runtime stage with Fedora base image
-FROM fedora:39
+# Stage 2: Runtime stage with lightweight Debian slim
+FROM debian:bullseye-slim
 
-# Install runtime dependencies only (no dev packages)
-RUN dnf -y install \
-    php-cli php-pgsql php-mbstring php-opcache php-bcmath php-sockets php-gd php-intl php-zip php-xsl \
-    libsodium git unzip zip curl libpq oniguruma freetype libjpeg-turbo libpng libxml2 openssl netcat-openbsd \
-    && dnf clean all
+# Install only runtime dependencies for PHP and your extensions
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    php8.3-cli php8.3-pgsql php8.3-mbstring php8.3-opcache php8.3-bcmath php8.3-sockets php8.3-gd php8.3-intl php8.3-zip php8.3-xsl \
+    libsodium23 git unzip zip curl libpq5 oniguruma1 freetype2 libjpeg62-turbo libpng16-16 libxml2 openssl netcat \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy PHP config, extensions, PHP binary, and composer from builder
+# Copy PHP config, extensions, PHP binary, and Composer from builder
 COPY --from=builder /usr/local/etc/php /usr/local/etc/php
 COPY --from=builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 COPY --from=builder /usr/local/bin/php /usr/local/bin/php
