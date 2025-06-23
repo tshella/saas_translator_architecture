@@ -1,6 +1,10 @@
 # Stage 1: Builder with official PHP image to build extensions, install composer and dependencies
 FROM php:8.3-cli AS builder
 
+# Accept DATABASE_URL as build argument and set as environment variable
+ARG DATABASE_URL
+ENV DATABASE_URL=${DATABASE_URL}
+
 # Install system dependencies needed for building extensions and your app
 RUN apt-get update && apt-get install -y \
     git unzip zip curl libpq-dev libzip-dev libsodium-dev libonig-dev libicu-dev libxml2-dev \
@@ -20,7 +24,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 COPY . .
 
-# Install PHP dependencies with optimized autoloader
+# Install PHP dependencies with optimized autoloader, now with DATABASE_URL available for cache clear
 RUN composer install --no-interaction --optimize-autoloader
 
 # Stage 2: Runtime stage with Fedora base image

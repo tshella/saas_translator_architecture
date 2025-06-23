@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'saas/translator',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => '87f20f95a699b06950ba41aa80630695c06c4145',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => null,
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -326,9 +326,9 @@
             ),
         ),
         'saas/translator' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '87f20f95a699b06950ba41aa80630695c06c4145',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => null,
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

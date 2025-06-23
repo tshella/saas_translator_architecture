@@ -1,13 +1,14 @@
 # Makefile for saas_translator_architecture
 
-# Variables
-APP_NAME = saas_translator_app
-COMPOSE_FILE = docker-compose.yml
+# Variables (can be overridden from environment or command line)
+APP_NAME ?= saas_translator_app
+COMPOSE_FILE ?= docker-compose.yml
 DATABASE_URL ?= mysql://user:password@db:3306/dbname
+CONTAINER_NAME ?= $(APP_NAME)
 
-.PHONY: all build up down logs shell migrate seed cache-clear clean help
+.PHONY: all build up down restart logs shell migrate seed cache-clear clean worker help
 
-all: help
+.DEFAULT_GOAL := help
 
 ## Build the Docker images
 build:
@@ -17,37 +18,46 @@ build:
 ## Start Docker containers (detached)
 up:
 	@echo "Starting Docker containers..."
-	docker-compose -f $(COMPOSE_FILE) up -d
+	docker compose $(COMPOSE_FILE) up -d
 
 ## Stop Docker containers
 down:
 	@echo "Stopping Docker containers..."
-	docker-compose -f $(COMPOSE_FILE) down
+	docker compose $(COMPOSE_FILE) down -v --remove-orphans
+
+## Restart Docker containers
+restart: down up
+	@echo "Restarted Docker containers."
 
 ## View logs for all containers
 logs:
 	@echo "Showing logs..."
-	docker-compose -f $(COMPOSE_FILE) logs -f
+	docker compose $(COMPOSE_FILE) logs -f
 
 ## Run shell inside backend container
 shell:
-	@echo "Opening shell inside backend container..."
-	docker exec -it $(APP_NAME) /bin/bash
+	@echo "Opening shell inside backend container '$(CONTAINER_NAME)'..."
+	docker exec -it $(CONTAINER_NAME) /bin/bash
 
 ## Run Symfony migrations
 migrate:
-	@echo "Running database migrations..."
-	docker exec -it $(APP_NAME) php bin/console doctrine:migrations:migrate --no-interaction
+	@echo "Running database migrations inside container '$(CONTAINER_NAME)'..."
+	docker exec -it $(CONTAINER_NAME) php bin/console doctrine:migrations:migrate --no-interaction
 
 ## Seed database with sample data
 seed:
-	@echo "Seeding database..."
-	docker exec -it $(APP_NAME) ./scripts/seed.sh
+	@echo "Seeding database inside container '$(CONTAINER_NAME)'..."
+	docker exec -it $(CONTAINER_NAME) ./scripts/seed.sh
 
 ## Clear Symfony cache
 cache-clear:
-	@echo "Clearing Symfony cache..."
-	docker exec -it $(APP_NAME) php bin/console cache:clear
+	@echo "Clearing Symfony cache inside container '$(CONTAINER_NAME)'..."
+	docker exec -it $(CONTAINER_NAME) php bin/console cache:clear
+
+## Run translation worker (async queue consumer)
+worker:
+	@echo "Starting translation worker in container '$(CONTAINER_NAME)'..."
+	docker exec -it $(CONTAINER_NAME) php bin/console app:consume-translations
 
 ## Clean up Docker environment and remove images
 clean: down
@@ -59,4 +69,5 @@ help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-15s %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | \
+	awk 'BEGIN {FS = ":.*?## "}; {printf "  %-15s %s\n", $$1, $$2}'
