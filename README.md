@@ -21,7 +21,7 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 
     ## 🧱 Project Structure
 
-    ```plaintext
+    
     .
     ├── backend
     │   ├── Dockerfile
@@ -66,7 +66,7 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 
     ### 1. Clone & Setup
 
-    ```bash
+    
     git clone https://github.com/your-org/saas_translator_architecture.git
     cd saas_translator_architecture
     ./backend/scripts/setup.sh
