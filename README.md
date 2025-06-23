@@ -66,24 +66,21 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 
     ### 1. Clone & Setup
 
-    
     git clone https://github.com/your-org/saas_translator_architecture.git
     cd saas_translator_architecture
     ./backend/scripts/setup.sh
+
     2. Seed Sample Data
-    bash
-    Copy
+    
     ./backend/scripts/seed.sh
+
     3. Start Translation Worker (in a new terminal)
-    bash
-    Copy
+   
     docker exec -it symfony_app php bin/console app:consume-translations
     ⚙️ How to Use
     Running the Application
     Once the setup and seed scripts complete, access the backend API at:
 
-    bash
-    Copy
     http://localhost:8000/api/translate
     Use the /api/translate endpoint to queue translation jobs via HTTP POST requests.
 
@@ -96,44 +93,36 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
     Translation Worker
     Keep the translation worker running in a separate terminal to process queued translation jobs asynchronously:
 
-    bash
-    Copy
     docker exec -it symfony_app php bin/console app:consume-translations
     Running Locally (Without Docker)
     Export environment variables:
 
-    bash
-    Copy
     export $(grep -v '^#' .env | xargs)
     Install PHP dependencies:
 
-    bash
-    Copy
     composer install
     Create database and run migrations:
 
-    bash
-    Copy
+    
     php bin/console doctrine:database:create --if-not-exists
     php bin/console doctrine:migrations:migrate
     Seed the database:
 
-    bash
-    Copy
+    
     php bin/console app:seed
     Start Symfony local server:
 
-    bash
-    Copy
+    
     php -S 0.0.0.0:8000 -t public
-    📡 API Endpoints (v1)
-    Method	Endpoint	Description
-    POST	/api/translate	Queue a translation job
 
-    Sample Request Body:
+📡 API Endpoints (v1)
+Method	Endpoint	Description
+POST	/api/translate	Queue a translation job
 
-    json
-    Copy
+Sample Request Body:
+
+  json
+  Copy
     {
     "text": "Hello",
     "from": "en",
