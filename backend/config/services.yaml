@@ -5,10 +5,15 @@ services:
         bind:
             $apiUrl: '%env(LIBRETRANSLATE_URL)%'
 
+    # Register all classes in src/ except some folders/files
     App\:
         resource: '../src/'
         exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
 
+    # Explicit service config for LibreTranslate service
     App\Service\Engine\LibreTranslate:
         arguments:
             $apiUrl: '%env(LIBRETRANSLATE_URL)%'
+
+    # Alias to fix autowiring error for ConsumeMessagesCommand injection
+    Symfony\Component\Messenger\Command\ConsumeMessagesCommand: '@console.command.messenger_consume_messages'

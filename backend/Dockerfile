@@ -1,4 +1,4 @@
-# Stage 1: Builder with official PHP image to build and install extensions, Composer, dependencies
+# Stage 1: Builder with official PHP image to build extensions, install composer and dependencies
 FROM php:8.3-cli AS builder
 
 # Install system dependencies needed for building extensions and your app
@@ -16,9 +16,12 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 # Install Composer globally
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copy project files into builder
+# Set working directory and copy project files
 WORKDIR /app
 COPY . .
+
+# Set dummy DATABASE_URL so cache clear does not fail during composer install
+ENV DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
 
 # Install PHP dependencies with optimized autoloader
 RUN composer install --no-interaction --optimize-autoloader
@@ -32,25 +35,25 @@ RUN dnf -y install \
     libsodium git unzip zip curl libpq oniguruma freetype libjpeg-turbo libpng libxml2 openssl netcat-openbsd \
     && dnf clean all
 
-# Copy PHP and Composer from builder stage
+# Copy PHP config, extensions, PHP binary, and composer from builder
 COPY --from=builder /usr/local/etc/php /usr/local/etc/php
 COPY --from=builder /usr/local/lib/php/extensions /usr/local/lib/php/extensions
 COPY --from=builder /usr/local/bin/php /usr/local/bin/php
 COPY --from=builder /usr/bin/composer /usr/bin/composer
 
-# Copy project files from builder (already composer installed)
+# Copy the fully prepared app directory from builder
 COPY --from=builder /app /var/www
 
 WORKDIR /var/www
 
-# Fix permissions for cache and logs
+# Ensure var/cache and var/log directories exist and are writable by user ID 1000
 RUN mkdir -p var/cache var/log && chown -R 1000:1000 var
 
-# Make console executable
+# Make Symfony console executable
 RUN chmod +x bin/console
 
-# Expose Symfony dev server port
+# Expose port for Symfony dev server
 EXPOSE 8000
 
-# Default command: Symfony built-in web server (development)
+# Default command to start Symfony built-in PHP server (for development)
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]

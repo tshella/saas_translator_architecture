@@ -1,16 +1,23 @@
-🧠 saas_translator_architecture
-SaaS-grade language translator using Symfony (PHP 8.2) for the backend and React/Redux for the frontend. Designed for scalability, modularity, and performance—leveraging SOLID principles, strategy patterns, JWT auth, and cloud-native architecture.
+# 🧠 saas_translator_architecture
 
+A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** backend and **React/Redux** frontend (upcoming). Engineered for **scalability, modularity, and performance** by leveraging:
 
+- SOLID object-oriented design principles  
+- Strategy pattern for translation engine extensibility  
+- JWT authentication with role-based access control  
+- Async messaging queue with Redis and Symfony Messenger  
+- Docker-first cloud-native containerization  
 
+---
 
+## Created and Maintained by  
+**Manaka Anthony Raphasha**
 
-Created and maintained by: Manaka Anthony Raphasha
+---
 
-🧱 Project Structure
-arduino
-Copy
-Edit
+## 🧱 Project Structure
+
+```plaintext
 .
 ├── backend
 │   ├── Dockerfile
@@ -37,45 +44,45 @@ Edit
 ├── README.md
 └── frontend (coming soon)
 ✅ Features Implemented
- ✅ Symfony API-driven backend (modular)
+Symfony API-driven backend: Fully modular, extensible architecture
 
- ✅ Dockerized setup (PHP + MySQL + Redis)
+Dockerized environment: Includes PHP, MySQL, Redis
 
- ✅ Async queue with Messenger + Redis
+Asynchronous queue processing: Symfony Messenger + Redis backend
 
- ✅ Strategy-based translation engine (Google, DeepL, LibreTranslate, OpenAI)
+Strategy-based translation engine: Supports Google, DeepL, LibreTranslate, OpenAI
 
- ✅ Glossary-based term replacement
+Glossary-based term replacement: Customizable dictionary integration
 
- ✅ Tone decorator (formal, casual, professional)
+Tone decorators: Formal, casual, professional modes
 
- ✅ JWT authentication (via Lexik bundle)
+JWT authentication: Via Lexik JWT Authentication bundle with role-based security
 
- ✅ DB auto-creation + migrations
+Database automation: Auto-creation and migrations with Doctrine
 
- ✅ Shell scripts for install, seed, migration
+Shell scripts: Setup, migration, seeding automation
 
- ✅ Improved Makefile + docker-entrypoint.sh for clean orchestration
+Makefile & docker-entrypoint.sh: Clean orchestration and lifecycle management
 
- ✅ Compatible with Symfony CLI, Docker, and native PHP
+Compatibility: Works with Symfony CLI, Docker, and native PHP runtime
 
 🚀 Quick Start
-1. Clone & Build
+Clone & Setup
+
 bash
 Copy
-Edit
 git clone https://github.com/your-org/saas_translator_architecture.git
 cd saas_translator_architecture
 ./backend/scripts/setup.sh
-2. Seed Sample Data
+Seed Sample Data
+
 bash
 Copy
-Edit
 ./backend/scripts/seed.sh
-3. Start Translation Worker (in another terminal)
+Start Translation Worker (in a new terminal)
+
 bash
 Copy
-Edit
 docker exec -it symfony_app php bin/console app:consume-translations
 📡 API Endpoints (v1)
 Method	Endpoint	Description
@@ -85,24 +92,23 @@ Sample Request Body:
 
 json
 Copy
-Edit
 {
   "text": "Hello",
   "from": "en",
   "to": "es"
 }
 🧠 Design Principles
-SOLID Principles – clean, scalable OOP
+SOLID Principles: Clean, maintainable OOP
 
-Strategy Pattern – plug in new engines easily
+Strategy Pattern: Easily add or switch translation engines
 
-Async Messaging – Messenger + Redis
+Async Messaging: Reliable queue with Symfony Messenger and Redis
 
-JWT Auth – secure API with role-based access
+JWT Authentication: Secure, stateless API with role-based access control
 
-Docker-First – one command to build all
+Docker-First Approach: One command to build and run the full environment
 
-Modular Structure – easy to extend and test
+Modular Structure: Clear separation of concerns for extensibility and testability
 
 🗺 Updated Roadmap
 Stage	Feature	Status
@@ -119,33 +125,48 @@ Stage	Feature	Status
 11	Locale switching & usage analytics	🔜 Planned
 
 📦 Technology Stack
-Layer	Tech
+Layer	Technology
 Backend	Symfony 6.4 (PHP 8.2)
 Auth	LexikJWTAuthenticationBundle
 Queue	Redis + Symfony Messenger
-DB	MySQL 8.0
+Database	MySQL 8.0
 Container	Docker + Docker Compose
 Translator	Google, DeepL, LibreTranslate, OpenAI
 Frontend	React 18 + Redux Toolkit (upcoming)
 
 🧪 Testing
-Planned and partially implemented:
+Unit tests for translation engine logic
 
-Unit tests for translation logic
+Token and glossary replacement tests
 
-Token + glossary replacement tests
+Async Messenger job handler verification
 
-Messenger job handler verification
-
-JWT security checks
+JWT authentication and security tests
 
 🤝 Contributing
 Coming soon:
 
-🛠 Issue templates
+Issue templates
 
-✅ Code standards
+Code standards and style guides
 
-🧪 GitHub Actions CI/CD
+GitHub Actions for CI/CD
 
-📚 Documentation site
+Full documentation site
+
+📚 Additional Resources
+Symfony Docs
+
+LexikJWTAuthenticationBundle
+
+Symfony Messenger
+
+Docker Compose
+
+Google Translate API
+
+DeepL API
+
+For questions, feedback, or collaboration, reach out to Manaka Anthony Raphasha.
+
+This project embraces best practices for modern SaaS backend development, designed for maintainability, security, and cloud deployment readiness.
