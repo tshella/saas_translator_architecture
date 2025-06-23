@@ -19,25 +19,54 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 
 ---
 
-| Feature                      | Status   | Description                               |
-|-----------------------------|----------|-------------------------------------------|
-| Symfony API-driven backend   | ✅ Done  | Modular, extensible architecture          |
-| Dockerized environment       | ✅ Done  | PHP, MySQL, Redis containers               |
-| Async queue processing       | ✅ Done  | Symfony Messenger + Redis backend          |
-| Strategy-based translation engine | ✅ Done  | Google, DeepL, LibreTranslate, OpenAI support |
-| Glossary-based term replacement | ✅ Done  | Customizable dictionary integration        |
-| Tone decorators             | ✅ Done  | Formal, casual, professional tone modes   |
-| JWT authentication          | ✅ Done  | Lexik JWT bundle with role-based security |
-| Database automation         | ✅ Done  | Auto-creation & migrations with Doctrine  |
-| Shell scripts               | ✅ Done  | Setup, migration, seeding automation       |
-| Makefile & docker-entrypoint | ✅ Done  | Clean orchestration & lifecycle management |
-| Compatibility               | ✅ Done  | Symfony CLI, Docker, native PHP runtime    |
+## 🧱 Project Structure
 
+```plaintext
+.
+├── backend
+│   ├── Dockerfile
+│   ├── docker-entrypoint.sh
+│   ├── Makefile
+│   ├── composer.json
+│   ├── .env
+│   ├── scripts
+│   │   ├── setup.sh
+│   │   ├── migrate.sh
+│   │   └── seed.sh
+│   ├── src
+│   │   ├── Command
+│   │   ├── Controller
+│   │   ├── Entity
+│   │   ├── Message
+│   │   ├── Repository
+│   │   ├── Security
+│   │   └── Service
+│   └── config
+│       ├── services.yaml
+│       └── jwt/
+├── docker-compose.yml
+├── README.md
+└── frontend (coming soon)
 
-🚀 Quick Start
-1. Clone & Setup
-bash
-Copy
+    | Feature                      | Status   | Description                               |
+    |-----------------------------|----------|-------------------------------------------|
+    | Symfony API-driven backend   | ✅ Done  | Modular, extensible architecture          |
+    | Dockerized environment       | ✅ Done  | PHP, MySQL, Redis containers               |
+    | Async queue processing       | ✅ Done  | Symfony Messenger + Redis backend          |
+    | Strategy-based translation engine | ✅ Done  | Google, DeepL, LibreTranslate, OpenAI support |
+    | Glossary-based term replacement | ✅ Done  | Customizable dictionary integration        |
+    | Tone decorators             | ✅ Done  | Formal, casual, professional tone modes   |
+    | JWT authentication          | ✅ Done  | Lexik JWT bundle with role-based security |
+    | Database automation         | ✅ Done  | Auto-creation & migrations with Doctrine  |
+    | Shell scripts               | ✅ Done  | Setup, migration, seeding automation       |
+    | Makefile & docker-entrypoint | ✅ Done  | Clean orchestration & lifecycle management |
+    | Compatibility               | ✅ Done  | Symfony CLI, Docker, native PHP runtime    |
+
+## 🚀 Quick Start
+
+### 1. Clone & Setup
+
+```bash
 git clone https://github.com/your-org/saas_translator_architecture.git
 cd saas_translator_architecture
 ./backend/scripts/setup.sh
@@ -110,8 +139,9 @@ Copy
   "from": "en",
   "to": "es"
 }
+vbnet
+Copy
 
-}
 🧠 Design Principles
 Principle	Description
 SOLID Principles	Clean, maintainable object-oriented code
@@ -204,34 +234,7 @@ Docker Compose	docs.docker.com/compose
 Google Translate API	cloud.google.com/translate/docs
 DeepL API	deepl.com/docs-api
 
-## 🧱 Project Structure
 
-```plaintext
-.
-├── backend
-│   ├── Dockerfile
-│   ├── docker-entrypoint.sh
-│   ├── Makefile
-│   ├── composer.json
-│   ├── .env
-│   ├── scripts
-│   │   ├── setup.sh
-│   │   ├── migrate.sh
-│   │   └── seed.sh
-│   ├── src
-│   │   ├── Command
-│   │   ├── Controller
-│   │   ├── Entity
-│   │   ├── Message
-│   │   ├── Repository
-│   │   ├── Security
-│   │   └── Service
-│   └── config
-│       ├── services.yaml
-│       └── jwt/
-├── docker-compose.yml
-├── README.md
-└── frontend (coming soon)
 
 For questions, feedback, or collaboration, reach out to Manaka Anthony Raphasha.
 
