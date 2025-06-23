@@ -19,34 +19,7 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 
 ---
 
-## 🧱 Project Structure
 
-
-.
-├── backend
-│   ├── Dockerfile
-│   ├── docker-entrypoint.sh
-│   ├── Makefile
-│   ├── composer.json
-│   ├── .env
-│   ├── scripts
-│   │   ├── setup.sh
-│   │   ├── migrate.sh
-│   │   └── seed.sh
-│   ├── src
-│   │   ├── Command
-│   │   ├── Controller
-│   │   ├── Entity
-│   │   ├── Message
-│   │   ├── Repository
-│   │   ├── Security
-│   │   └── Service
-│   └── config
-│       ├── services.yaml
-│       └── jwt/
-├── docker-compose.yml
-├── README.md
-└── frontend (coming soon)
 
 
 ✅ Features Implemented
@@ -231,6 +204,34 @@ Docker Compose	docs.docker.com/compose
 Google Translate API	cloud.google.com/translate/docs
 DeepL API	deepl.com/docs-api
 
+## 🧱 Project Structure
+
+```plaintext
+.
+├── backend
+│   ├── Dockerfile
+│   ├── docker-entrypoint.sh
+│   ├── Makefile
+│   ├── composer.json
+│   ├── .env
+│   ├── scripts
+│   │   ├── setup.sh
+│   │   ├── migrate.sh
+│   │   └── seed.sh
+│   ├── src
+│   │   ├── Command
+│   │   ├── Controller
+│   │   ├── Entity
+│   │   ├── Message
+│   │   ├── Repository
+│   │   ├── Security
+│   │   └── Service
+│   └── config
+│       ├── services.yaml
+│       └── jwt/
+├── docker-compose.yml
+├── README.md
+└── frontend (coming soon)
 For questions, feedback, or collaboration, reach out to Manaka Anthony Raphasha.
 
 This project embraces best practices for modern SaaS backend development, designed for maintainability, security, and cloud deployment readiness.
