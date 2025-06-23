@@ -62,85 +62,85 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 | Makefile & docker-entrypoint | ✅ Done  | Clean orchestration & lifecycle management |
 | Compatibility               | ✅ Done  | Symfony CLI, Docker, native PHP runtime    |
 
-## 🚀 Quick Start
+    ## 🚀 Quick Start
 
-### 1. Clone & Setup
+    ### 1. Clone & Setup
 
-```bash
-git clone https://github.com/your-org/saas_translator_architecture.git
-cd saas_translator_architecture
-./backend/scripts/setup.sh
-2. Seed Sample Data
-bash
-Copy
-./backend/scripts/seed.sh
-3. Start Translation Worker (in a new terminal)
-bash
-Copy
-docker exec -it symfony_app php bin/console app:consume-translations
-⚙️ How to Use
-Running the Application
-Once the setup and seed scripts complete, access the backend API at:
+    ```bash
+    git clone https://github.com/your-org/saas_translator_architecture.git
+    cd saas_translator_architecture
+    ./backend/scripts/setup.sh
+    2. Seed Sample Data
+    bash
+    Copy
+    ./backend/scripts/seed.sh
+    3. Start Translation Worker (in a new terminal)
+    bash
+    Copy
+    docker exec -it symfony_app php bin/console app:consume-translations
+    ⚙️ How to Use
+    Running the Application
+    Once the setup and seed scripts complete, access the backend API at:
 
-bash
-Copy
-http://localhost:8000/api/translate
-Use the /api/translate endpoint to queue translation jobs via HTTP POST requests.
+    bash
+    Copy
+    http://localhost:8000/api/translate
+    Use the /api/translate endpoint to queue translation jobs via HTTP POST requests.
 
-Example cURL Request
-bash
-Copy
-curl -X POST http://localhost:8000/api/translate \
-  -H "Content-Type: application/json" \
-  -d '{"text": "Hello", "from": "en", "to": "es"}'
-Translation Worker
-Keep the translation worker running in a separate terminal to process queued translation jobs asynchronously:
+    Example cURL Request
+    bash
+    Copy
+    curl -X POST http://localhost:8000/api/translate \
+    -H "Content-Type: application/json" \
+    -d '{"text": "Hello", "from": "en", "to": "es"}'
+    Translation Worker
+    Keep the translation worker running in a separate terminal to process queued translation jobs asynchronously:
 
-bash
-Copy
-docker exec -it symfony_app php bin/console app:consume-translations
-Running Locally (Without Docker)
-Export environment variables:
+    bash
+    Copy
+    docker exec -it symfony_app php bin/console app:consume-translations
+    Running Locally (Without Docker)
+    Export environment variables:
 
-bash
-Copy
-export $(grep -v '^#' .env | xargs)
-Install PHP dependencies:
+    bash
+    Copy
+    export $(grep -v '^#' .env | xargs)
+    Install PHP dependencies:
 
-bash
-Copy
-composer install
-Create database and run migrations:
+    bash
+    Copy
+    composer install
+    Create database and run migrations:
 
-bash
-Copy
-php bin/console doctrine:database:create --if-not-exists
-php bin/console doctrine:migrations:migrate
-Seed the database:
+    bash
+    Copy
+    php bin/console doctrine:database:create --if-not-exists
+    php bin/console doctrine:migrations:migrate
+    Seed the database:
 
-bash
-Copy
-php bin/console app:seed
-Start Symfony local server:
+    bash
+    Copy
+    php bin/console app:seed
+    Start Symfony local server:
 
-bash
-Copy
-php -S 0.0.0.0:8000 -t public
-📡 API Endpoints (v1)
-Method	Endpoint	Description
-POST	/api/translate	Queue a translation job
+    bash
+    Copy
+    php -S 0.0.0.0:8000 -t public
+    📡 API Endpoints (v1)
+    Method	Endpoint	Description
+    POST	/api/translate	Queue a translation job
 
-Sample Request Body:
+    Sample Request Body:
 
-json
-Copy
-{
-  "text": "Hello",
-  "from": "en",
-  "to": "es"
-}
-vbnet
-Copy
+    json
+    Copy
+    {
+    "text": "Hello",
+    "from": "en",
+    "to": "es"
+    }
+    vbnet
+    Copy
 
 🧠 Design Principles
 Principle	Description
