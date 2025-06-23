@@ -2,24 +2,21 @@
 
 services:
   app:
-    build: .
+    build:
+      context: ./backend
     container_name: symfony_app
+    volumes:
+      - ./backend:/var/www
     ports:
       - "8000:8000"
-    volumes:
-      - .:/var/www
-    depends_on:
-      - redis
-      - db
     environment:
-      MESSENGER_TRANSPORT_DSN: redis://redis:6379/messages
       DATABASE_URL: mysql://symfony:symfony@db:3306/translator?serverVersion=8.0
-
-  redis:
-    image: redis:6.2-alpine
-    container_name: redis
-    ports:
-      - "6379:6379"
+      MESSENGER_TRANSPORT_DSN: redis://redis:6379/messages
+      LIBRETRANSLATE_URL: http://libretranslate:5000
+    depends_on:
+      - db
+      - redis
+      - libretranslate
 
   db:
     image: mysql:8.0
@@ -32,3 +29,22 @@ services:
       MYSQL_PASSWORD: symfony
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 10
+
+  redis:
+    image: redis:6.2-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  libretranslate:
+    image: libretranslate/libretranslate:latest
+    container_name: libretranslate
+    ports:
+      - "5000:5000"
+    environment:
+      - LT_API_KEY=changeme
+    restart: always

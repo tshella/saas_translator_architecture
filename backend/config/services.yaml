@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $apiUrl: '%env(LIBRETRANSLATE_URL)%'
+
+    App\:
+        resource: '../src/'
+        exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+
+    App\Service\Engine\LibreTranslate:
+        arguments:
+            $apiUrl: '%env(LIBRETRANSLATE_URL)%'
