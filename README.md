@@ -119,17 +119,17 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 Method	Endpoint	Description
 POST	/api/translate	Queue a translation job
 
-Sample Request Body:
+    Sample Request Body:
 
-  json
-  Copy
-    {
-    "text": "Hello",
-    "from": "en",
-    "to": "es"
-    }
-    vbnet
-    Copy
+    json
+ 
+        {
+        "text": "Hello",
+        "from": "en",
+        "to": "es"
+        }
+        vbnet
+       
 
 #### 🧠 Design Principles
     Principle	Description
@@ -204,23 +204,23 @@ Environment Setup
     Write clear, modular, and testable code.
 
 #### 📊 Metrics & Diagrams
-(Placeholder for architecture diagrams, flowcharts, or graphs)
+    (Placeholder for architecture diagrams, flowcharts, or graphs)
 
 #### 🤝 Contributing
-Issue templates and pull request guidelines will be added soon.
+    Issue templates and pull request guidelines will be added soon.
 
-CI/CD workflows with GitHub Actions are planned.
+    CI/CD workflows with GitHub Actions are planned.
 
-Please submit issues and pull requests for bugs and improvements.
+    Please submit issues and pull requests for bugs and improvements.
 
 #### 📚 Additional Resources
-Resource	Link
-Symfony Documentation	symfony.com/doc/current
-Lexik JWT Authentication Bundle	github.com/lexik/LexikJWTAuthenticationBundle
-Symfony Messenger	symfony.com/doc/current/messenger.html
-Docker Compose	docs.docker.com/compose
-Google Translate API	cloud.google.com/translate/docs
-DeepL API	deepl.com/docs-api
+    Resource	Link
+    Symfony Documentation	symfony.com/doc/current
+    Lexik JWT Authentication Bundle	github.com/lexik/LexikJWTAuthenticationBundle
+    Symfony Messenger	symfony.com/doc/current/messenger.html
+    Docker Compose	docs.docker.com/compose
+    Google Translate API	cloud.google.com/translate/docs
+    DeepL API	deepl.com/docs-api
 
 
 
