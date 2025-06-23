@@ -19,9 +19,6 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 
 ---
 
-
-
-
 | Feature                      | Status   | Description                               |
 |-----------------------------|----------|-------------------------------------------|
 | Symfony API-driven backend   | ✅ Done  | Modular, extensible architecture          |
@@ -38,26 +35,23 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 
 
 🚀 Quick Start
-Clone & Setup
-
+1. Clone & Setup
 bash
 Copy
 git clone https://github.com/your-org/saas_translator_architecture.git
 cd saas_translator_architecture
 ./backend/scripts/setup.sh
-Seed Sample Data
-
+2. Seed Sample Data
 bash
 Copy
 ./backend/scripts/seed.sh
-Start Translation Worker (in a new terminal)
-
+3. Start Translation Worker (in a new terminal)
 bash
 Copy
 docker exec -it symfony_app php bin/console app:consume-translations
 ⚙️ How to Use
 Running the Application
-Once the setup and seed scripts are complete, access the backend API at:
+Once the setup and seed scripts complete, access the backend API at:
 
 bash
 Copy
@@ -116,6 +110,8 @@ Copy
   "from": "en",
   "to": "es"
 }
+
+}
 🧠 Design Principles
 Principle	Description
 SOLID Principles	Clean, maintainable object-oriented code
@@ -126,18 +122,21 @@ Docker-First	One command to build & run full environment
 Modular Structure	Clear separation of concerns for extensibility
 
 🗺 Roadmap
-Stage	Feature	Status
-1	Symfony backend + API routing	✅ Done
-2	Redis queue + async processor	✅ Done
-3	Glossary + Tone decorators	✅ Done
-4	LibreTranslate + external APIs	✅ Done
-5	JWT auth + middleware firewall	✅ Done
-6	Docker entrypoint & Makefile	✅ Done
-7	React/Redux frontend scaffold	🔜 Next
-8	Login UI + token persistence	🔜 Next
-9	Billing + metering dashboard	🔜 Planned
-10	Multi-tenant SaaS billing engine	🔜 Planned
-11	Locale switching & usage analytics	🔜 Planned
+
+| Stage | Feature                         | Status     |
+|-------|--------------------------------|------------|
+| 1     | Symfony backend + API routing   | ✅ Done    |
+| 2     | Redis queue + async processor   | ✅ Done    |
+| 3     | Glossary + Tone decorators      | ✅ Done    |
+| 4     | LibreTranslate + external APIs  | ✅ Done    |
+| 5     | JWT auth + middleware firewall  | ✅ Done    |
+| 6     | Docker entrypoint & Makefile    | ✅ Done    |
+| 7     | React/Redux frontend scaffold   | 🔜 Next    |
+| 8     | Login UI + token persistence    | 🔜 Next    |
+| 9     | Billing + metering dashboard    | 🔜 Planned |
+| 10    | Multi-tenant SaaS billing engine| 🔜 Planned |
+| 11    | Locale switching & usage analytics | 🔜 Planned |
+
 
 📦 Technology Stack
 Layer	Technology
