@@ -46,7 +46,7 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
 │       └── jwt/
 ├── docker-compose.yml
 ├── README.md
-└── frontend (coming soon)
+└── frontend (coming soon)  .
 ---
 
 ✅ Features Implemented
