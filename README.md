@@ -67,20 +67,17 @@ Makefile & docker-entrypoint.sh: Clean orchestration and lifecycle management
 Compatibility: Works with Symfony CLI, Docker, and native PHP runtime
 
 🚀 Quick Start
-Clone & Setup
-
+1. Clone & Setup
 bash
 Copy
 git clone https://github.com/your-org/saas_translator_architecture.git
 cd saas_translator_architecture
 ./backend/scripts/setup.sh
-Seed Sample Data
-
+2. Seed Sample Data
 bash
 Copy
 ./backend/scripts/seed.sh
-Start Translation Worker (in a new terminal)
-
+3. Start Translation Worker (in a new terminal)
 bash
 Copy
 docker exec -it symfony_app php bin/console app:consume-translations
@@ -88,8 +85,7 @@ docker exec -it symfony_app php bin/console app:consume-translations
 Method	Endpoint	Description
 POST	/api/translate	Queue a translation job
 
-Sample Request Body:
-
+Sample Request Body
 json
 Copy
 {
@@ -155,9 +151,9 @@ GitHub Actions for CI/CD
 Full documentation site
 
 📚 Additional Resources
-Symfony Docs
+Symfony Documentation
 
-LexikJWTAuthenticationBundle
+Lexik JWT Authentication Bundle
 
 Symfony Messenger
 
