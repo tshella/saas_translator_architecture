@@ -182,16 +182,16 @@ Sample Request Body:
 
 #### 👩‍💻 Developer Guidance
 Environment Setup
-    Ensure Docker and Docker Compose are installed.
+Ensure Docker and Docker Compose are installed.
 
-    Use ./backend/scripts/setup.sh to start with a clean environment.
+Use ./backend/scripts/setup.sh to start with a clean environment.
 
-    Export .env variables before running commands locally, e.g.,
+Export .env variables before running commands locally, e.g.,
 
 
-    export $(grep -v '^#' .env | xargs)
-    Common Commands
-    Command	Description
+export $(grep -v '^#' .env | xargs)
+Common Commands
+Command	Description
     make build	Build backend Docker image
     make up	Start all containers
     make down	Stop all containers
@@ -200,31 +200,31 @@ Environment Setup
     make shell	Enter backend container shell
     make worker	Start translation queue worker
 
-    Code Standards
-    Follow PSR-12 coding standard for PHP.
+Code Standards
+Follow PSR-12 coding standard for PHP.
 
-    Use tools like phpstan and php-cs-fixer (planned).
+Use tools like phpstan and php-cs-fixer (planned).
 
-    Write clear, modular, and testable code.
+Write clear, modular, and testable code.
 
 #### 📊 Metrics & Diagrams
     (Placeholder for architecture diagrams, flowcharts, or graphs)
 
 #### 🤝 Contributing
-    Issue templates and pull request guidelines will be added soon.
+- Issue templates and pull request guidelines will be added soon.
 
-    CI/CD workflows with GitHub Actions are planned.
+- CI/CD workflows with GitHub Actions are planned.
 
-    Please submit issues and pull requests for bugs and improvements.
+- Please submit issues and pull requests for bugs and improvements.
 
 #### 📚 Additional Resources
-    Resource	Link
-    Symfony Documentation	symfony.com/doc/current
-    Lexik JWT Authentication Bundle	github.com/lexik/LexikJWTAuthenticationBundle
-    Symfony Messenger	symfony.com/doc/current/messenger.html
-    Docker Compose	docs.docker.com/compose
-    Google Translate API	cloud.google.com/translate/docs
-    DeepL API	deepl.com/docs-api
+Resource	Link
+Symfony Documentation	[Click here]https://symfony.com/doc/current
+Lexik JWT Authentication Bundle	[Click here]github.com/lexik/LexikJWTAuthenticationBundle
+Symfony Messenger	[Click here]symfony.com/doc/current/messenger.html
+Docker Compose	docs.docker.com/compose
+Google Translate API	cloud.google.com/translate/docs
+DeepL API	deepl.com/docs-api
 
 
 
