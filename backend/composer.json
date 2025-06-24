@@ -1,8 +1,8 @@
 {
-    "name": "saas/translator",
-    "type": "project",
-    "license": "MIT",
-    "require": {
+  "name": "saas/translator",
+  "type": "project",
+  "license": "MIT",
+  "require": {
       "php": "^8.2",
       "doctrine/annotations": "^1.14",
       "doctrine/doctrine-bundle": "^2.15",
@@ -19,33 +19,36 @@
       "symfony/translation": "^6.4",
       "symfony/validator": "^6.4",
       "symfony/yaml": "^6.4"
-    },
-    "require-dev": {
-        "symfony/debug-bundle": "^6.4",
-        "symfony/dotenv": "*",
-        "symfony/maker-bundle": "^1.63"
-    },
-    "autoload": {
+  },
+  "require-dev": {
+      "symfony/debug-bundle": "^6.4",
+      "symfony/dotenv": "*",
+      "symfony/maker-bundle": "^1.63"
+  },
+  "autoload": {
       "psr-4": {
-        "App\\": "src/"
+          "App\\": "src/"
       }
-    },
-    "scripts": {
+  },
+  "scripts": {
+      "auto-scripts": {
+          "cache:clear": "symfony-cmd"
+      },
       "post-install-cmd": [
-        "@php bin/console cache:clear"
+          "@auto-scripts"
       ],
       "post-update-cmd": [
-        "@php bin/console cache:clear"
+          "@auto-scripts"
       ]
-    },
-    "config": {
+  },
+  "config": {
       "preferred-install": "dist",
       "sort-packages": true,
       "allow-plugins": {
-        "symfony/runtime": true,
-        "composer/package-versions-deprecated": true
+          "symfony/runtime": true,
+          "composer/package-versions-deprecated": true
       }
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
-  }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

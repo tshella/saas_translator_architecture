@@ -4,22 +4,19 @@ set -e
 echo "🏁 Running entrypoint script..."
 
 echo "⏳ Waiting for database..."
-until nc -z db 3306; do
+while ! nc -z db 3306; do
   echo "⏳ Waiting for db to be available..."
   sleep 2
 done
 
 cd /var/www
 
-echo "📁 Ensuring migrations directory exists..."
-mkdir -p migrations
-chown -R www-data:www-data migrations
+echo "📁 Ensuring directories exist..."
+mkdir -p migrations var/cache var/log
+chown -R www-data:www-data var migrations
 
-mkdir -p var/cache var/log
-chown -R www-data:www-data var
-
-echo "📦 Installing dependencies..."
-composer install --no-interaction --optimize-autoloader || true
+echo "🚀 Running composer scripts (post-install-cmd)..."
+composer run-script post-install-cmd
 
 echo "🧬 Creating database if not exists..."
 php bin/console doctrine:database:create --if-not-exists || true
