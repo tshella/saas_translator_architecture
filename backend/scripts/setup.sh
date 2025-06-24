@@ -11,7 +11,7 @@ echo "🚀 Starting Docker containers with fresh build..."
 docker-compose up -d --build
 
 echo "⌛ Waiting for Symfony app container to be ready..."
-sleep 15  # Adjust if needed
+sleep 15  # Adjust this wait time as needed
 
 echo "🔧 Fixing permissions inside container '$CONTAINER'..."
 docker exec -it $CONTAINER chown -R www-data:www-data /var/www

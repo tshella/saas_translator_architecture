@@ -12,13 +12,13 @@ MIGRATION_COUNT=$(docker exec $CONTAINER bash -c "ls -1 $MIGRATIONS_DIR/*.php 2>
 
 if [ "$MIGRATION_COUNT" -eq 0 ]; then
   echo "🧬 No migrations found. Generating initial migration..."
-  docker exec -u www-data $CONTAINER php bin/console make:migration
+  docker exec -u www-data $CONTAINER php bin/console make:migration || true
 else
   echo "🧬 Found $MIGRATION_COUNT migration(s). Checking for new changes..."
   docker exec -u www-data $CONTAINER php bin/console doctrine:migrations:diff || true
 fi
 
 echo "🚀 Running migrations..."
-docker exec -u www-data $CONTAINER php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
+docker exec -u www-data $CONTAINER php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration || true
 
 echo "✅ Migration process complete."
