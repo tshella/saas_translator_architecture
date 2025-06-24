@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php"
+         colors="true"
+         verbose="true"
+         failOnRisky="true"
+         failOnWarning="true">
+
+    <testsuites>
+        <testsuite name="App Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <env name="APP_ENV" value="test"/>
+        <env name="DATABASE_URL" value="sqlite:///:memory:"/>
+        <env name="LIBRETRANSLATE_URL" value="http://libretranslate:5000"/>
+        <env name="OPENAI_API_KEY" value="test-openai-key"/>
+        <env name="OPENAI_MODEL" value="gpt-4"/>
+        <env name="DEEPL_API_KEY" value="test-deepl-key"/>
+        <env name="DEEPL_API_URL" value="https://api-free.deepl.com/v2/translate"/>
+    </php>
+
+</phpunit>

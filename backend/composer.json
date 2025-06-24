@@ -21,9 +21,11 @@
       "symfony/yaml": "^6.4"
     },
     "require-dev": {
-      "symfony/debug-bundle": "^6.4",
-      "symfony/dotenv": "*",
-      "symfony/maker-bundle": "^1.63"
+        "phpunit/phpunit": "*",
+        "symfony/debug-bundle": "^6.4",
+        "symfony/dotenv": "*",
+        "symfony/maker-bundle": "^1.63",
+        "symfony/test-pack": "*"
     },
     "autoload": {
       "psr-4": {
@@ -53,4 +55,3 @@
     "minimum-stability": "stable",
     "prefer-stable": true
   }
-  
