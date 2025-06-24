@@ -19,7 +19,6 @@ class DeepLTranslatorTest extends TestCase
         $translator = new DeepLTranslator($client, 'test-key', 'http://api.deepl.com/v2/translate');
 
         $result = $translator->translate('Hello', 'en', 'fr');
-
         $this->assertSame('Bonjour', $result);
     }
 
@@ -31,7 +30,6 @@ class DeepLTranslatorTest extends TestCase
         $translator = new DeepLTranslator($client, 'test-key', 'http://api.deepl.com/v2/translate');
 
         $result = $translator->translate('Hello', 'en', 'fr');
-
         $this->assertSame('[Error]', $result);
     }
 }

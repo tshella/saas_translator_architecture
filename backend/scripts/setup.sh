@@ -11,7 +11,7 @@ echo "🚀 Starting Docker containers with fresh build..."
 docker-compose up -d --build
 
 echo "⌛ Waiting for Symfony app container to be ready..."
-sleep 15  # Adjust this wait time as needed
+sleep 15
 
 echo "🔧 Fixing permissions inside container '$CONTAINER'..."
 docker exec -it $CONTAINER chown -R www-data:www-data /var/www
@@ -25,5 +25,17 @@ docker exec -u www-data $CONTAINER php bin/console doctrine:database:create --if
 
 echo "🧬 Running migrations..."
 bash $MIGRATE_SCRIPT
+
+echo ""
+echo "=============================="
+echo "🧪 Running PHPUnit Unit Tests"
+echo "=============================="
+docker exec -u www-data $CONTAINER ./vendor/bin/phpunit --testdox --colors=always || true
+
+echo ""
+echo "============================"
+echo "  T R A N S L A T E ! 🌍 "
+echo "============================"
+echo ""
 
 echo "🎉 Setup complete! Visit http://localhost:8000"

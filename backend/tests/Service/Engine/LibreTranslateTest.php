@@ -19,7 +19,6 @@ class LibreTranslateTest extends TestCase
         $translator = new LibreTranslate($client, 'http://fake.local/translate');
 
         $result = $translator->translate('Hello world', 'en', 'fr');
-
         $this->assertSame('Bonjour le monde', $result);
     }
 
@@ -31,7 +30,6 @@ class LibreTranslateTest extends TestCase
         $translator = new LibreTranslate($client, 'http://fake.local/translate');
 
         $result = $translator->translate('Test', 'en', 'fr');
-
         $this->assertSame('[Error]', $result);
     }
 }

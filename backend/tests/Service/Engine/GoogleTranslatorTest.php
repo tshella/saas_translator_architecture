@@ -10,11 +10,11 @@ class GoogleTranslatorTest extends TestCase
 {
     public function testTranslateReturnsExpectedFormat(): void
     {
-        $client = new MockHttpClient(); // not used in logic
+        $client = new MockHttpClient();
         $translator = new GoogleTranslator($client);
 
         $result = $translator->translate('Hello', 'en', 'fr');
-
         $this->assertSame('[Google:en->fr] Hello', $result);
     }
 }
+

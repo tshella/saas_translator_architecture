@@ -15,7 +15,7 @@ class TranslatorFactoryTest extends TestCase
 
     protected function setUp(): void
     {
-        parent::setUp(); // ✅ Prevent PHPUnit deprecation warning
+        parent::setUp();
 
         $libre = $this->createMock(LibreTranslate::class);
         $google = $this->createMock(GoogleTranslator::class);
@@ -32,26 +32,22 @@ class TranslatorFactoryTest extends TestCase
 
     public function testReturnsLibreTranslateAsDefault(): void
     {
-        $translator = $this->factory->create('libre');
-        $this->assertInstanceOf(LibreTranslate::class, $translator);
+        $this->assertInstanceOf(LibreTranslate::class, $this->factory->create('libre'));
     }
 
     public function testReturnsGoogleTranslator(): void
     {
-        $translator = $this->factory->create('google');
-        $this->assertInstanceOf(GoogleTranslator::class, $translator);
+        $this->assertInstanceOf(GoogleTranslator::class, $this->factory->create('google'));
     }
 
     public function testReturnsDeepLTranslator(): void
     {
-        $translator = $this->factory->create('deepl');
-        $this->assertInstanceOf(DeepLTranslator::class, $translator);
+        $this->assertInstanceOf(DeepLTranslator::class, $this->factory->create('deepl'));
     }
 
     public function testReturnsOpenAiTranslator(): void
     {
-        $translator = $this->factory->create('openai');
-        $this->assertInstanceOf(OpenAiTranslator::class, $translator);
+        $this->assertInstanceOf(OpenAiTranslator::class, $this->factory->create('openai'));
     }
 
     public function testThrowsExceptionForUnknownProvider(): void

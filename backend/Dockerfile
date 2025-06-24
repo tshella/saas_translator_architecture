@@ -25,7 +25,12 @@ RUN apt-get update && apt-get install -y \
     autoconf \
     pkg-config \
     build-essential \
+    libcurl4-openssl-dev \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Xdebug for test coverage support
+RUN pecl install xdebug \
+ && docker-php-ext-enable xdebug
 
 # Configure and install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -50,13 +55,15 @@ WORKDIR /var/www
 # Copy project files
 COPY . .
 
-# Create needed directories
-RUN mkdir -p migrations
+# Create needed directories for Symfony
+RUN mkdir -p migrations var/cache var/log var/coverage var/junit
+RUN chmod -R 775 var && chown -R www-data:www-data var
 
-# Install PHP dependencies (skip composer scripts for now)
+# Install PHP dependencies (skip auto-scripts for build speed)
 RUN composer install --no-interaction --optimize-autoloader --no-scripts
 
 # Make entrypoint executable
 RUN chmod +x docker-entrypoint.sh
 
+# Expose app port
 EXPOSE 8000

@@ -3,7 +3,7 @@
         'name' => 'saas/translator',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '76909a38c04aae4fbb8aeb026c0ff6e30fd29f6b',
+        'reference' => '590828173667a6fc4162a8baefbd3d130376fd18',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -437,7 +437,7 @@
         'saas/translator' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '76909a38c04aae4fbb8aeb026c0ff6e30fd29f6b',
+            'reference' => '590828173667a6fc4162a8baefbd3d130376fd18',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

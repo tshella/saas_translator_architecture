@@ -1,6 +1,6 @@
 # Makefile for Symfony Backend Project
 
-.PHONY: jwt-keys migrate db-seed install run
+.PHONY: jwt-keys migrate db-seed install run test setup docker-build
 
 # 🔐 Generate JWT key pair for authentication
 jwt-keys:
@@ -25,3 +25,15 @@ install:
 # 🚀 Run Symfony's built-in local web server
 run:
 	@php -S 0.0.0.0:8000 -t public
+
+# 🧪 Run unit tests using PHPUnit
+test:
+	@docker exec -u www-data symfony_app ./vendor/bin/phpunit --testdox
+
+# 🔄 Rebuild Docker and setup Symfony environment
+setup:
+	@bash ./backend/scripts/setup.sh
+
+# 🐳 Build Docker containers manually
+docker-build:
+	@docker-compose up -d --build

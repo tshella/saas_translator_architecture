@@ -10,11 +10,10 @@ class OpenAiTranslatorTest extends TestCase
 {
     public function testTranslateReturnsExpectedFormat(): void
     {
-        $client = new MockHttpClient(); // not used in logic
+        $client = new MockHttpClient();
         $translator = new OpenAiTranslator($client, 'fake-key', 'gpt-4');
 
         $result = $translator->translate('Hello', 'en', 'fr');
-
         $this->assertSame('[OpenAI:en->fr] Hello', $result);
     }
 }

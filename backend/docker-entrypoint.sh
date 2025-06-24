@@ -21,10 +21,8 @@ composer run-script post-install-cmd || true
 echo "🧬 Creating database if not exists..."
 php bin/console doctrine:database:create --if-not-exists || true
 
-# Check for existing migration files
-MIGRATION_FILES=$(ls migrations/*.php 2>/dev/null || true)
-
-if [ -z "$MIGRATION_FILES" ]; then
+echo "🔍 Checking for existing migration files..."
+if ! ls migrations/*.php 1> /dev/null 2>&1; then
   echo "🧬 No migration files found. Generating initial migration..."
   php bin/console make:migration || true
 else
@@ -33,6 +31,18 @@ fi
 
 echo "🚀 Running migrations..."
 php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration || true
+
+echo ""
+echo "=============================="
+echo "🧪 Running PHPUnit Unit Tests"
+echo "=============================="
+./vendor/bin/phpunit --testdox --colors=always || true
+
+echo ""
+echo "============================"
+echo "  T R A N S L A T E ! 🌍 "
+echo "============================"
+echo ""
 
 echo "🚀 Starting Symfony app on 0.0.0.0:8000..."
 exec php -S 0.0.0.0:8000 -t public
