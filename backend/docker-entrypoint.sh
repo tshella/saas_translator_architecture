@@ -12,11 +12,11 @@ done
 cd /var/www
 
 echo "📁 Ensuring directories exist..."
-mkdir -p migrations var/cache var/log
-chown -R www-data:www-data var migrations
+mkdir -p migrations var/cache var/log public
+chown -R www-data:www-data var migrations public
 
 echo "🚀 Running composer scripts (post-install-cmd)..."
-composer run-script post-install-cmd
+composer run-script post-install-cmd || true
 
 echo "🧬 Creating database if not exists..."
 php bin/console doctrine:database:create --if-not-exists || true
@@ -24,5 +24,5 @@ php bin/console doctrine:database:create --if-not-exists || true
 echo "🧬 Running migrations..."
 php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration || true
 
-echo "🚀 Starting Symfony app..."
+echo "🚀 Starting Symfony app on 0.0.0.0:8000..."
 exec php -S 0.0.0.0:8000 -t public

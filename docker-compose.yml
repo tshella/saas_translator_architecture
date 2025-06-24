@@ -21,6 +21,7 @@ services:
       - db
       - redis
       - libretranslate
+    entrypoint: ["bash", "docker-entrypoint.sh"]
 
   db:
     image: mysql:8.0
