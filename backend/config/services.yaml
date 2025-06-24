@@ -2,18 +2,29 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        bind:
-            $apiUrl: '%env(LIBRETRANSLATE_URL)%'
 
-    # Register all classes in src/ except some folders/files
     App\:
         resource: '../src/'
         exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
 
-    # Explicit service config for LibreTranslate service
+    # LibreTranslate - default translator
     App\Service\Engine\LibreTranslate:
         arguments:
             $apiUrl: '%env(LIBRETRANSLATE_URL)%'
 
-    # Alias to fix autowiring error for ConsumeMessagesCommand injection
+    App\Service\TranslatorInterface: '@App\Service\Engine\LibreTranslate'
+
+    # Optional engines (not default)
+    App\Service\Engine\OpenAiTranslator:
+        arguments:
+            $apiKey: '%env(OPENAI_API_KEY)%'
+            $model: '%env(default::OPENAI_MODEL)%'
+
+    App\Service\Engine\DeepLTranslator:
+        arguments:
+            $apiKey: '%env(DEEPL_API_KEY)%'
+            $apiUrl: '%env(DEEPL_API_URL)%'
+
+    App\Service\Engine\GoogleTranslator: ~
+
     Symfony\Component\Messenger\Command\ConsumeMessagesCommand: '@console.command.messenger_consume_messages'
