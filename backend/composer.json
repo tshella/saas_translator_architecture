@@ -3,30 +3,30 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": "^8.2",
-        "doctrine/annotations": "^1.14",
-        "doctrine/doctrine-bundle": "^2.15",
-        "doctrine/doctrine-migrations-bundle": "^3.4",
-        "lexik/jwt-authentication-bundle": "^2.21",
-        "symfony/console": "^6.4",
-        "symfony/framework-bundle": "^6.4",
-        "symfony/http-client": "^6.4",
-        "symfony/messenger": "^6.4",
-        "symfony/monolog-bundle": "*",
-        "symfony/orm-pack": "^2.4",
-        "symfony/runtime": "^6.4",
-        "symfony/security-bundle": "^6.4",
-        "symfony/serializer-pack": "^1.3",
-        "symfony/translation": "^6.4",
-        "symfony/validator": "^6.4",
-        "symfony/yaml": "^6.4"
+      "php": "^8.2",
+      "doctrine/annotations": "^1.14",
+      "doctrine/doctrine-bundle": "^2.15",
+      "doctrine/doctrine-migrations-bundle": "^3.4",
+      "lexik/jwt-authentication-bundle": "^2.21",
+      "symfony/console": "^6.4",
+      "symfony/framework-bundle": "^6.4",
+      "symfony/http-client": "^6.4",
+      "symfony/messenger": "^6.4",
+      "symfony/monolog-bundle": "^3.8",
+      "symfony/orm-pack": "^2.4",
+      "symfony/runtime": "^6.4",
+      "symfony/security-bundle": "^6.4",
+      "symfony/serializer-pack": "^1.3",
+      "symfony/translation": "^6.4",
+      "symfony/validator": "^6.4",
+      "symfony/yaml": "^6.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "*",
-        "symfony/debug-bundle": "^6.4",
-        "symfony/dotenv": "*",
-        "symfony/maker-bundle": "^1.63",
-        "symfony/test-pack": "*"
+      "phpunit/phpunit": "^10.5",
+      "symfony/debug-bundle": "^6.4",
+      "symfony/dotenv": "^6.4",
+      "symfony/maker-bundle": "^1.63",
+      "symfony/test-pack": "^1.0"
     },
     "autoload": {
       "psr-4": {
@@ -36,7 +36,8 @@
     "scripts": {
       "auto-scripts": {
         "cache:clear": "php bin/console cache:clear",
-        "assets:install %PUBLIC_DIR%": "php bin/console assets:install %PUBLIC_DIR%"
+        "assets:install public": "php bin/console assets:install public",
+        "doctrine:migrations:diff": "php bin/console doctrine:migrations:diff || true"
       },
       "post-install-cmd": [
         "@auto-scripts"
@@ -56,3 +57,4 @@
     "minimum-stability": "stable",
     "prefer-stable": true
   }
+  

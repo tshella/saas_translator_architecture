@@ -21,6 +21,9 @@ composer run-script post-install-cmd || true
 echo "🧬 Creating database if not exists..."
 php bin/console doctrine:database:create --if-not-exists || true
 
+echo "🧬 Generating migrations from entity changes..."
+php bin/console doctrine:migrations:diff || true
+
 echo "🧬 Running migrations..."
 php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration || true
 

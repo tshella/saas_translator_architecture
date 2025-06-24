@@ -6,14 +6,13 @@
     "require": {
         "phpunit/phpunit": "*",
         "symfony/browser-kit": "*",
-        "symfony/css-selector": "*"
+        "symfony/css-selector": "*",
+        "symfony/phpunit-bridge": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
         "symfony/browser-kit": "*",
-        "symfony/css-selector": "*"
-    },
-    "conflict": {
-        "phpunit/phpunit": "<11.1"
+        "symfony/css-selector": "*",
+        "symfony/phpunit-bridge": "*"
     }
 }
