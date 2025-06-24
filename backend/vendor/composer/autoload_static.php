@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd102af9028c06e27149df8a82dc0c9f8
+class ComposerStaticInit41c4ff8b7f2ae1c4005581d8a8c9c360
 {
     public static $files = array (
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
@@ -91,10 +91,12 @@ class ComposerStaticInitd102af9028c06e27149df8a82dc0c9f8
             'Symfony\\Component\\Cache\\' => 24,
             'Symfony\\Component\\BrowserKit\\' => 29,
             'Symfony\\Bundle\\SecurityBundle\\' => 30,
+            'Symfony\\Bundle\\MonologBundle\\' => 29,
             'Symfony\\Bundle\\MakerBundle\\' => 27,
             'Symfony\\Bundle\\FrameworkBundle\\' => 31,
             'Symfony\\Bundle\\DebugBundle\\' => 27,
             'Symfony\\Bridge\\Twig\\' => 20,
+            'Symfony\\Bridge\\Monolog\\' => 23,
             'Symfony\\Bridge\\Doctrine\\' => 24,
         ),
         'P' => 
@@ -113,6 +115,7 @@ class ComposerStaticInitd102af9028c06e27149df8a82dc0c9f8
         ),
         'M' => 
         array (
+            'Monolog\\' => 8,
             'Masterminds\\' => 12,
         ),
         'L' => 
@@ -357,6 +360,10 @@ class ComposerStaticInitd102af9028c06e27149df8a82dc0c9f8
         array (
             0 => __DIR__ . '/..' . '/symfony/security-bundle',
         ),
+        'Symfony\\Bundle\\MonologBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/monolog-bundle',
+        ),
         'Symfony\\Bundle\\MakerBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/maker-bundle/src',
@@ -372,6 +379,10 @@ class ComposerStaticInitd102af9028c06e27149df8a82dc0c9f8
         'Symfony\\Bridge\\Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/twig-bridge',
+        ),
+        'Symfony\\Bridge\\Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/monolog-bridge',
         ),
         'Symfony\\Bridge\\Doctrine\\' => 
         array (
@@ -408,6 +419,10 @@ class ComposerStaticInitd102af9028c06e27149df8a82dc0c9f8
         'Namshi\\JOSE\\' => 
         array (
             0 => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'Masterminds\\' => 
         array (
@@ -1791,9 +1806,9 @@ class ComposerStaticInitd102af9028c06e27149df8a82dc0c9f8
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd102af9028c06e27149df8a82dc0c9f8::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd102af9028c06e27149df8a82dc0c9f8::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitd102af9028c06e27149df8a82dc0c9f8::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit41c4ff8b7f2ae1c4005581d8a8c9c360::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit41c4ff8b7f2ae1c4005581d8a8c9c360::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit41c4ff8b7f2ae1c4005581d8a8c9c360::$classMap;
 
         }, null, ClassLoader::class);
     }

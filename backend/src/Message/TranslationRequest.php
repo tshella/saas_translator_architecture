@@ -2,7 +2,7 @@
 
 namespace App\Message;
 
-class TranslationRequest
+final class TranslationRequest
 {
     public function __construct(
         public readonly string $text,

@@ -1,30 +1,48 @@
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
+  _defaults:
+    autowire: true
+    autoconfigure: true
 
-    App\:
-        resource: '../src/'
-        exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+  App\:
+    resource: '../src/'
+    exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
 
-    # LibreTranslate - default translator
-    App\Service\Engine\LibreTranslate:
-        arguments:
-            $apiUrl: '%env(LIBRETRANSLATE_URL)%'
+  # LibreTranslate - default translator
+  App\Service\Engine\LibreTranslate:
+    arguments:
+      $apiUrl: '%env(LIBRETRANSLATE_URL)%'
 
-    App\Service\TranslatorInterface: '@App\Service\Engine\LibreTranslate'
+  App\Service\TranslatorInterface: '@App\Service\Engine\LibreTranslate'
 
-    # Optional engines (not default)
-    App\Service\Engine\OpenAiTranslator:
-        arguments:
-            $apiKey: '%env(OPENAI_API_KEY)%'
-            $model: '%env(default::OPENAI_MODEL)%'
+  # Optional engines (not default)
+  App\Service\Engine\OpenAiTranslator:
+    arguments:
+      $apiKey: '%env(OPENAI_API_KEY)%'
+      $model: '%env(OPENAI_MODEL)%'
 
-    App\Service\Engine\DeepLTranslator:
-        arguments:
-            $apiKey: '%env(DEEPL_API_KEY)%'
-            $apiUrl: '%env(DEEPL_API_URL)%'
+  App\Service\Engine\DeepLTranslator:
+    arguments:
+      $apiKey: '%env(DEEPL_API_KEY)%'
+      $apiUrl: '%env(DEEPL_API_URL)%'
 
-    App\Service\Engine\GoogleTranslator: ~
+  App\Service\Engine\GoogleTranslator: ~
 
-    Symfony\Component\Messenger\Command\ConsumeMessagesCommand: '@console.command.messenger_consume_messages'
+  # Messenger consume command (avoids autowiring error)
+  Symfony\Component\Messenger\Command\ConsumeMessagesCommand: '@console.command.messenger_consume_messages'
+
+  # Middleware for logging translation requests
+  App\Middleware\TranslationLoggingMiddleware:
+    tags: [messenger.middleware]
+
+  # Logging formatters
+  monolog.formatter.json:
+    class: Monolog\Formatter\JsonFormatter
+    arguments:
+      $batchMode: 2   # Monolog\Formatter\JsonFormatter::BATCH_MODE_JSON
+      $appendNewline: true
+
+  monolog.formatter.line:
+    class: Monolog\Formatter\LineFormatter
+    arguments:
+      $format: "[%%datetime%%] %%channel%%.%%level_name%%: %%message%% %%context%%\\n"
+      $dateFormat: 'Y-m-d H:i:s'

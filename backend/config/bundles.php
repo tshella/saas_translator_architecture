@@ -7,6 +7,9 @@ return [
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
     Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle::class => ['all' => true],
 
+    // Logging support
+    Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
+
     // DebugBundle only enabled in dev environment
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true],
 
