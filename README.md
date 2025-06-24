@@ -192,7 +192,6 @@ Export .env variables before running commands locally, e.g.,
     export $(grep -v '^#' .env | xargs)
 Common Commands
 Command	Description
-```plaintext
     make build	Build backend Docker image
     make up	Start all containers
     make down	Stop all containers
