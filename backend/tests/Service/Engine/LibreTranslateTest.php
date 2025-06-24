@@ -24,7 +24,10 @@ class LibreTranslateTest extends TestCase
 
     public function testTranslateReturnsFallbackOnInvalidJson(): void
     {
-        $mockResponse = new MockResponse('invalid-json');
+        $mockResponse = new MockResponse('invalid-json', [
+            'http_code' => 200,
+            'response_headers' => ['content-type' => 'application/json']
+        ]);
 
         $client = new MockHttpClient($mockResponse);
         $translator = new LibreTranslate($client, 'http://fake.local/translate');

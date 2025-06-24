@@ -24,7 +24,10 @@ class DeepLTranslatorTest extends TestCase
 
     public function testTranslateHandlesInvalidJsonGracefully(): void
     {
-        $mockResponse = new MockResponse('not-json');
+        $mockResponse = new MockResponse('not-json', [
+            'http_code' => 200,
+            'response_headers' => ['content-type' => 'application/json']
+        ]);
 
         $client = new MockHttpClient($mockResponse);
         $translator = new DeepLTranslator($client, 'test-key', 'http://api.deepl.com/v2/translate');

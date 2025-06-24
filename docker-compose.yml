@@ -42,10 +42,21 @@ services:
       - "6379:6379"
 
   libretranslate:
-    image: libretranslate/libretranslate:latest
+    image: libretranslate/libretranslate:v1.6.5
     container_name: libretranslate
     ports:
       - "5000:5000"
     environment:
       - LT_API_KEY=changeme
+      - LT_DEBUG=true
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
