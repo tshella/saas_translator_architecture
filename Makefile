@@ -5,8 +5,10 @@ APP_NAME ?= saas_translator_app
 COMPOSE_FILE ?= docker-compose.yml
 DATABASE_URL ?= mysql://user:password@db:3306/dbname
 CONTAINER_NAME ?= $(APP_NAME)
+NLLB_CONTAINER ?= nllb-mini
 
-.PHONY: all build up down restart logs shell migrate seed cache-clear clean worker help
+.PHONY: all build up down restart logs shell migrate seed cache-clear clean worker help \
+        nllb-build nllb-up nllb-logs nllb-shell nllb-health
 
 .DEFAULT_GOAL := help
 
@@ -64,10 +66,34 @@ clean: down
 	@echo "Removing Docker images..."
 	docker rmi $(APP_NAME) || true
 
+## NLLB: Build the nllb-mini service
+nllb-build:
+	@echo "Building NLLB-Mini container..."
+	docker compose build nllb-mini
+
+## NLLB: Start nllb-mini in isolation
+nllb-up:
+	@echo "Starting NLLB-Mini only..."
+	docker compose up -d nllb-mini
+
+## NLLB: Show logs
+nllb-logs:
+	@echo "NLLB-Mini Logs:"
+	docker compose logs -f nllb-mini
+
+## NLLB: Open shell inside NLLB container
+nllb-shell:
+	@echo "Opening shell inside '$(NLLB_CONTAINER)'..."
+	docker exec -it $(NLLB_CONTAINER) /bin/bash
+
+## NLLB: Check if NLLB-Mini is healthy
+nllb-health:
+	@curl --silent --fail http://localhost:5001/translate || echo "❌ NLLB-Mini not healthy"
+
 ## Help: Display this help message
 help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | \
-	awk 'BEGIN {FS = ":.*?## "}; {printf "  %-15s %s\n", $$1, $$2}'
+	awk 'BEGIN {FS = ":.*?## "}; {printf "  %-20s %s\n", $$1, $$2}'

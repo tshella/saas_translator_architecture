@@ -7,38 +7,53 @@ services:
     resource: '../src/'
     exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
 
-  # LibreTranslate - default translator
+  # Default TranslatorInterface binding to LibreTranslate
+  App\Service\TranslatorInterface: '@App\Service\Engine\LibreTranslate'
+
+  # LibreTranslate engine
   App\Service\Engine\LibreTranslate:
     arguments:
       $apiUrl: '%env(LIBRETRANSLATE_URL)%'
 
-  App\Service\TranslatorInterface: '@App\Service\Engine\LibreTranslate'
-
-  # Optional engines (not default)
-  App\Service\Engine\OpenAiTranslator:
-    arguments:
-      $apiKey: '%env(OPENAI_API_KEY)%'
-      $model: '%env(OPENAI_MODEL)%'
-
+  # DeepL engine
   App\Service\Engine\DeepLTranslator:
     arguments:
       $apiKey: '%env(DEEPL_API_KEY)%'
       $apiUrl: '%env(DEEPL_API_URL)%'
 
+  # Google Translate (optional placeholder)
   App\Service\Engine\GoogleTranslator: ~
 
-  # Messenger consume command (avoids autowiring error)
+  # OpenAI GPT translator (optional)
+  App\Service\Engine\OpenAiTranslator:
+    arguments:
+      $apiKey: '%env(OPENAI_API_KEY)%'
+      $model: '%env(OPENAI_MODEL)%'
+
+  # NLLB-Mini translator
+  App\Service\Engine\NllbMiniTranslator:
+    arguments:
+      $endpoint: '%env(NLLB_MINI_URL)%'
+
+  # Unified engine router
+  App\Service\TranslationRouter:
+    arguments:
+      $libre: '@App\Service\Engine\LibreTranslate'
+      $deepl: '@App\Service\Engine\DeepLTranslator'
+      $nllb: '@App\Service\Engine\NllbMiniTranslator'
+
+  # Messenger binding to avoid error
   Symfony\Component\Messenger\Command\ConsumeMessagesCommand: '@console.command.messenger_consume_messages'
 
-  # Middleware for logging translation requests
+  # Translation request logger middleware
   App\Middleware\TranslationLoggingMiddleware:
     tags: [messenger.middleware]
 
-  # Logging formatters
+  # Monolog formatters
   monolog.formatter.json:
     class: Monolog\Formatter\JsonFormatter
     arguments:
-      $batchMode: 2   # Monolog\Formatter\JsonFormatter::BATCH_MODE_JSON
+      $batchMode: 2
       $appendNewline: true
 
   monolog.formatter.line:

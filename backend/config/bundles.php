@@ -6,13 +6,8 @@ return [
     Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
     Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle::class => ['all' => true],
-
-    // Logging support
+    Nelmio\ApiDocBundle\NelmioApiDocBundle::class => ['all' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
-
-    // DebugBundle only enabled in dev environment
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true],
-
-    // MakerBundle enabled only in dev and test environments
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true, 'test' => true],
 ];

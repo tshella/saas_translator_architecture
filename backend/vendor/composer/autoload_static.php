@@ -74,6 +74,7 @@ class ComposerStaticInit37a7902407f0a783b82fca9d965157ec
             'Symfony\\Component\\PropertyAccess\\' => 33,
             'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\PasswordHasher\\' => 33,
+            'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\Messenger\\' => 28,
             'Symfony\\Component\\HttpKernel\\' => 29,
             'Symfony\\Component\\HttpFoundation\\' => 33,
@@ -111,8 +112,13 @@ class ComposerStaticInit37a7902407f0a783b82fca9d965157ec
             'PhpParser\\' => 10,
             'PHPStan\\PhpDocParser\\' => 21,
         ),
+        'O' => 
+        array (
+            'OpenApi\\' => 8,
+        ),
         'N' => 
         array (
+            'Nelmio\\ApiDocBundle\\' => 20,
             'Namshi\\JOSE\\' => 12,
         ),
         'M' => 
@@ -290,6 +296,10 @@ class ComposerStaticInit37a7902407f0a783b82fca9d965157ec
         array (
             0 => __DIR__ . '/..' . '/symfony/password-hasher',
         ),
+        'Symfony\\Component\\OptionsResolver\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/options-resolver',
+        ),
         'Symfony\\Component\\Messenger\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/messenger',
@@ -421,6 +431,14 @@ class ComposerStaticInit37a7902407f0a783b82fca9d965157ec
         'PHPStan\\PhpDocParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpstan/phpdoc-parser/src',
+        ),
+        'OpenApi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zircote/swagger-php/src',
+        ),
+        'Nelmio\\ApiDocBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nelmio/api-doc-bundle/src',
         ),
         'Namshi\\JOSE\\' => 
         array (
