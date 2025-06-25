@@ -15,12 +15,14 @@ services:
       APP_DEBUG: ${APP_DEBUG}
       DATABASE_URL: ${DATABASE_URL}
       MESSENGER_TRANSPORT_DSN: ${MESSENGER_TRANSPORT_DSN}
-      LIBRETRANSLATE_URL: ${LIBRETRANSLATE_URL}
+      LIBRETRANSLATE_URL: http://libretranslate:5000
+      NLLB_URL: http://nllb-mini:5001
       JWT_PASSPHRASE: ${JWT_PASSPHRASE}
     depends_on:
       - db
       - redis
       - libretranslate
+      - nllb-mini
     entrypoint: ["bash", "docker-entrypoint.sh"]
 
   db:
@@ -51,7 +53,7 @@ services:
     environment:
       - LT_API_KEY=changeme
       - LT_DEBUG=true
-      - LT_NO_AUTO_DOWNLOAD=true  
+      - LT_NO_AUTO_DOWNLOAD=true
     volumes:
       - libretranslate_data:/home/libretranslate/.local
     restart: always
@@ -65,6 +67,14 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
+
+  nllb-mini:
+    build:
+      context: ./nllb-mini
+    container_name: nllb-mini
+    ports:
+      - "5001:5001"
+    restart: always
 
 volumes:
   libretranslate_data:
