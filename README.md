@@ -118,58 +118,69 @@ Seed the database:
     php -S 0.0.0.0:8000 -t public
 
 #### 📡 API Endpoints (v1)
-Method	Endpoint	Description
-POST	/api/translate	Queue a translation job
+
+| Method | Endpoint       | Description             |
+| ------ | -------------- | ----------------------- |
+| POST   | /api/translate | Queue a translation job |
+| GET    | /api/doc       | Swagger documentation   |
+
 
 Sample Request Body:
 
     json
  
         {
-        "text": "Hello",
-        "from": "en",
-        "to": "es"
+            "text": "Hello",
+            "source": "en",
+            "target": "fr",
+            "engine": "nllb"
         }
        
 
 #### 🧠 Design Principles
 
---
-**Principle	Description**
+| Principle          | Description                                           |
+| ------------------ | ----------------------------------------------------- |
+| SOLID Principles   | Maintainable object-oriented code                     |
+| Strategy Pattern   | Easily switch or add translation engines              |
+| Async Messaging    | Redis + Symfony Messenger for non-blocking processing |
+| JWT Authentication | Stateless secure API                                  |
+| Modular Structure  | Decoupled services and pluggable components           |
+| Docker-First       | Reproducible environments using Docker                |
 
-- SOLID Principles	Clean, maintainable object-oriented code
-- Strategy Pattern	Easily add or switch translation engines
-- Async Messaging	Reliable queue with Symfony Messenger + Redis
-- JWT Authentication	Secure, stateless API with role-based access
-- Docker-First	One command to build & run full environment
-- Modular Structure	Clear separation of concerns for extensibility
 
 🗺 Roadmap
 
-| Stage | Feature                         | Status     |
-|-------|--------------------------------|------------|
-| 1     | Symfony backend + API routing   | ✅ Done    |
-| 2     | Redis queue + async processor   | ✅ Done    |
-| 3     | Glossary + Tone decorators      | ✅ Done    |
-| 4     | LibreTranslate + external APIs  | ✅ Done    |
-| 5     | JWT auth + middleware firewall  | ✅ Done    |
-| 6     | Docker entrypoint & Makefile    | ✅ Done    |
-| 7     | React/Redux frontend scaffold   | 🔜 Next    |
-| 8     | Login UI + token persistence    | 🔜 Next    |
-| 9     | Billing + metering dashboard    | 🔜 Planned |
-| 10    | Multi-tenant SaaS billing engine| 🔜 Planned |
-| 11    | Locale switching & usage analytics | 🔜 Planned |
+| Stage | Feature                        | Status     |
+| ----- | ------------------------------ | ---------- |
+| 1     | Symfony backend                | ✅ Done     |
+| 2     | Redis queue for async jobs     | ✅ Done     |
+| 3     | Glossary/tone decorators       | ✅ Done     |
+| 4     | LibreTranslate engine          | ✅ Done     |
+| 5     | JWT authentication             | ✅ Done     |
+| 6     | Makefile + Docker entrypoint   | ✅ Done     |
+| 7     | API Gateway with Swagger UI    | ✅ Done     |
+| 8     | Add NLLB-Mini engine (Meta AI) | ✅ Done     |
+| 9     | React/Redux frontend scaffold  | 🔜 Next    |
+| 10    | Token storage + UI login       | 🔜 Next    |
+| 11    | Billing and usage metering     | 🔜 Planned |
+| 12    | Multi-tenant SaaS billing      | 🔜 Planned |
+| 13    | Usage analytics dashboard      | 🔜 Planned |
+
 
 
 #### 📦 Technology Stack
-- Layer	Technology
-- Backend	Symfony 6.4 (PHP 8.2)
-- Auth	LexikJWTAuthenticationBundle
-- Queue	Redis + Symfony Messenger
-- Database	MySQL 8.0
-- Container	Docker + Docker Compose
-- Translator	Google, DeepL, LibreTranslate, OpenAI
-- Frontend	React 18 + Redux Toolkit (upcoming)
+| Layer     | Technology                           |
+| --------- | ------------------------------------ |
+| Backend   | Symfony 6.4 (PHP 8.2)                |
+| Auth      | LexikJWTAuthenticationBundle         |
+| Queue     | Redis + Symfony Messenger            |
+| Database  | MySQL 8.0                            |
+| Container | Docker + Docker Compose              |
+| Engines   | LibreTranslate, DeepL, OpenAI, NLLB  |
+| Docs      | NelmioApiDocBundle (Swagger/OpenAPI) |
+| Frontend  | React 18 + Redux Toolkit (planned)   |
+
 
 ##### 🧪 Testing
 - Unit tests for translation engine logic
@@ -190,15 +201,18 @@ Export .env variables before running commands locally, e.g.,
 
 
     export $(grep -v '^#' .env | xargs)
+
 Common Commands
-Command	Description
-    make build	Build backend Docker image
-    make up	Start all containers
-    make down	Stop all containers
-    make migrate	Run Doctrine migrations
-    make seed	Seed the database
-    make shell	Enter backend container shell
-    make worker	Start translation queue worker
+| Command      | Description                   |
+| ------------ | ----------------------------- |
+| make build   | Build backend Docker image    |
+| make up      | Start all containers          |
+| make down    | Stop all containers           |
+| make migrate | Run Doctrine migrations       |
+| make seed    | Seed database with dummy data |
+| make shell   | Enter backend container       |
+| make worker  | Run translation queue worker  |
+
 
 Code Standards
 Follow PSR-12 coding standard for PHP.
@@ -218,13 +232,17 @@ Write clear, modular, and testable code.
 - Please submit issues and pull requests for bugs and improvements.
 
 #### 📚 Additional Resources
-Resource	Link
-Symfony Documentation	https://symfony.com/doc/current
-Lexik JWT Authentication Bundle	https://github.com/lexik/LexikJWTAuthenticationBundle
-Symfony Messenger	https://symfony.com/doc/current/messenger.html
-Docker Compose	docs.docker.com/compose
-Google Translate API	https://cloud.google.com/translate/docs
-DeepL API	https://deepl.com/docs-api
+| Resource                     | Link                                                                                                           |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Symfony Docs                 | [https://symfony.com/doc/current](https://symfony.com/doc/current)                                             |
+| LexikJWTAuthenticationBundle | [https://github.com/lexik/LexikJWTAuthenticationBundle](https://github.com/lexik/LexikJWTAuthenticationBundle) |
+| Symfony Messenger            | [https://symfony.com/doc/current/messenger.html](https://symfony.com/doc/current/messenger.html)               |
+| Docker Compose               | [https://docs.docker.com/compose](https://docs.docker.com/compose)                                             |
+| OpenAI Translation API       | [https://platform.openai.com/docs](https://platform.openai.com/docs)                                           |
+| DeepL API                    | [https://deepl.com/docs-api](https://deepl.com/docs-api)                                                       |
+| LibreTranslate               | [https://libretranslate.com/docs](https://libretranslate.com/docs)                                             |
+| NLLB (Meta AI)               | [https://github.com/facebookresearch/fairseq](https://github.com/facebookresearch/fairseq)                     |
+
 
 
 
