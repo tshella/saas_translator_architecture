@@ -28,9 +28,18 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Xdebug for test coverage support
-RUN pecl install xdebug \
- && docker-php-ext-enable xdebug
+# ✅ Manually install Xdebug (PECL is unreliable)
+ENV XDEBUG_VERSION=3.3.2
+RUN curl -fsSL https://xdebug.org/files/xdebug-${XDEBUG_VERSION}.tgz -o xdebug.tgz \
+    && mkdir -p /tmp/xdebug \
+    && tar -xf xdebug.tgz -C /tmp/xdebug --strip-components=1 \
+    && cd /tmp/xdebug \
+    && phpize \
+    && ./configure \
+    && make -j$(nproc) \
+    && make install \
+    && docker-php-ext-enable xdebug \
+    && rm -rf /tmp/xdebug xdebug.tgz
 
 # Configure and install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
