@@ -48,32 +48,27 @@ A SaaS-grade language translation platform built with **Symfony (PHP 8.2)** back
     ├── README.md
     └── frontend (coming soon)
 
+| Feature                      | Status   | Description                               |
+|-----------------------------|----------|-------------------------------------------|
+| Symfony API-driven backend   | ✅ Done  | Modular, extensible architecture          |
+| Dockerized environment       | ✅ Done  | PHP, MySQL, Redis containers               |
+| Async queue processing       | ✅ Done  | Symfony Messenger + Redis backend          |
+| Strategy-based translation engine | ✅ Done  | Google, DeepL, LibreTranslate, OpenAI support |
+| Glossary-based term replacement | ✅ Done  | Customizable dictionary integration        |
+| Tone decorators             | ✅ Done  | Formal, casual, professional tone modes   |
+| JWT authentication          | ✅ Done  | Lexik JWT bundle with role-based security |
+| Database automation         | ✅ Done  | Auto-creation & migrations with Doctrine  |
+| Shell scripts               | ✅ Done  | Setup, migration, seeding automation       |
+| Makefile & docker-entrypoint | ✅ Done  | Clean orchestration & lifecycle management |
+| Compatibility               | ✅ Done  | Symfony CLI, Docker, native PHP runtime    |
 
-| Feature                           | Status   | Description                                          |
-|----------------------------------|----------|------------------------------------------------------|
-| Symfony API-driven backend       | ✅ Done  | Modular, extensible architecture                     |
-| Dockerized environment           | ✅ Done  | PHP, MySQL, Redis, NLLB, LibreTranslate containers   |
-| Async queue processing           | ✅ Done  | Symfony Messenger + Redis backend                    |
-| Strategy-based engine routing    | ✅ Done  | Dynamic routing to DeepL, LibreTranslate, NLLB       |
-| NLLB-Mini Translation Engine     | ✅ Done  | Offline/low-resource fallback engine by Meta         |
-| API Gateway with Swagger         | ✅ Done  | OpenAPI `/api/doc` via NelmioApiDocBundle            |
-| JWT authentication               | ✅ Done  | Lexik JWT with role-based access                     |
-| Glossary & tone decorators       | ✅ Done  | Replace phrases and adjust tone                      |
-| Database automation              | ✅ Done  | Auto-migration with Doctrine                         |
-| Shell scripts                    | ✅ Done  | Setup, seed, migration automation                    |
-| Makefile                         | ✅ Done  | Clean orchestration lifecycle                        |
+ ## 🚀 Quick Start
 
----
+ ### 1. Clone & Setup
 
-## 🚀 Quick Start
-
-### 1. Clone & Setup
-
-```bash
-git clone https://github.com/your-org/saas_translator_architecture.git
-cd saas_translator_architecture
-./backend/scripts/setup.sh
-
+    git clone https://github.com/your-org/saas_translator_architecture.git
+    cd saas_translator_architecture
+    ./backend/scripts/setup.sh
 
 ### 2. Seed Sample Data
     
